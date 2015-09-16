@@ -5,11 +5,23 @@ public class Cliente {
 	private String dni;
 	private String mail;
 	private String telefono;
+	private String nombre;
 	
-	public Cliente(String dni, String domicilio, String mail) {
+	public Cliente(String dni, String nombre) {
 		this.dni = dni;
-		this.domicilio = domicilio;
+		this.nombre = nombre;
+	}
+	
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	
+	public void setMail(String mail){
 		this.mail = mail;
+	}
+	
+	public String getDni() {
+		return dni;
 	}
 
 }
