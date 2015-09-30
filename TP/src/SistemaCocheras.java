@@ -30,27 +30,7 @@ public class SistemaCocheras {
 		return false;
 		
 	}
-	
-	public Cliente buscarCliente(String dni) {
-		
-		for(Cliente cliente : clientes) {
-			if(cliente.getDni().equals(dni)) {
-				return cliente;
-			}
-		}
-		
-		return null;
-	}
-	
-
-	/**
-	 * Se elimina el cliente y sus contratos
-	 * 
-	 * @param dni
-	 * @return true si elimino el cliente, o false si no existia
-	 * 
-	 */
-	public boolean bajaCliente(String dni) {
+	public boolean eliminarCliente(String dni) {
 		
 		// obtengo el cliente
 		Cliente cliente = buscarCliente(dni);
@@ -59,11 +39,11 @@ public class SistemaCocheras {
 		if(cliente != null) {
 			
 			// obtengo sus contratos
-			List<Contrato> contratosCliente = buscarContratosCLiente(dni);
+			List<Contrato> contratosCliente = buscarContratosCliente(dni);
 			
 			for (Contrato contrato : contratosCliente) {
 				// elimino sus coontratos
-				bajaContrato(contrato.getNumeroContrato());
+				eliminarContrato(contrato.getNumeroContrato());
 			}
 			
 			// elimino el cliente
@@ -73,55 +53,60 @@ public class SistemaCocheras {
 		
 		return false;
 	}
-	
-
-	/**
-	 * Elimina el contrato
-	 * 
-	 * @param numeroContrato
-	 */
-	private void bajaContrato(long numeroContrato) {
-		for(Contrato contrato : contratos) {
-			if(contrato.getNumeroContrato() == numeroContrato) {
-				contratos.remove(contrato);
+	public Cliente buscarCliente(String dni) {	
+		for(Cliente cliente : clientes) {
+			if(cliente.getDni().equals(dni)) {
+				return cliente;
 			}
 		}
 		
+		return null;
 	}
 
-	/**
-	 * Devuelve los contratos del cliente cuyo dni se recibe como parametro
-	 * @param dni
-	 * @return
-	 */
-	public List<Contrato> buscarContratosCLiente(String dni) {
-		List<Contrato> contratosCliente = new ArrayList<Contrato>();
-		for(Contrato contrato : contratos) {
-			if (contrato.getCliente().getDni() == dni) {
-				contratosCliente.add(contrato);
-			}
-		}
-		return contratosCliente;
-	}
-	
-	public void agregarAbono(String descripcion, double precio, String tamanioCochera) {
-		Abono abono = new Abono(descripcion, precio, tamanioCochera);
-		//alguna validacion supongo
-		abonos.add(abono);
-	}
-	
-	public void eliminarAbono(String descripcion, double precio, String tamanioCochera) {
-		Abono abono = new Abono(descripcion, precio, tamanioCochera);
-		//alguna validacion supongo
-		abonos.add(abono);
-	}
 	
 	public void crearCochera(int numero, String tamanio) {
 		Cochera cochera = new Cochera(numero, tamanio);
 		//alguna validacion supongo
 		cocheras.add(cochera);
 	}
+	public void eliminarCochera(int numero) {
+		for(Cochera cochera : cocheras) {
+			if(cochera.getNumero() == numero) {
+				cocheras.remove(cochera);
+			}
+		}
+	}
+	public Cochera buscarCocheraDisponible(String tamanio) {
+		for(Cochera cochera : cocheras) {
+			if(cochera.getTamanio() == tamanio && cochera.isDisponible()) {
+				return cochera;
+			}
+		}
+		return null;
+	}
 	
+	
+	public void crearAbono(String descripcion, double precio, String tamanioCochera) {
+		Abono abono = new Abono(descripcion, precio, tamanioCochera);
+		//alguna validacion supongo
+		abonos.add(abono);
+	}
+	public void eliminarAbono(int codigo) {
+		for(Abono abono : abonos) {
+			if(abono.getCodigo() == codigo) {
+				abonos.remove(abono);
+			}
+		}
+	}
+	public void modificarPrecioAbono(int codigo, int nuevoPrecio) {
+		for(Abono abono : abonos) {
+			if(abono.getCodigo() == codigo) {
+				abono.setPrecio(nuevoPrecio);
+			}
+		}
+	}
+	
+
 	public void crearContrato(Cliente cliente, Abono abono, Auto auto, String tipoContrato) {
 		
 		Contrato contrato = null;
@@ -140,6 +125,34 @@ public class SistemaCocheras {
 		
 		contratos.add(contrato);
 	}
+	public void eliminarContrato(long numeroContrato) {
+		for(Contrato contrato : contratos) {
+			if(contrato.getNumeroContrato() == numeroContrato) {
+				contratos.remove(contrato);
+			}
+		}	
+	}
+	public List<Contrato> buscarContratosCliente(String dni) {
+		List<Contrato> contratosCliente = new ArrayList<Contrato>();
+		for(Contrato contrato : contratos) {
+			if (contrato.getCliente().getDni() == dni) {
+				contratosCliente.add(contrato);
+			}
+		}
+		return contratosCliente;
+	}
+	
+	
+	
+
+	
+	
+
+	
+	
+	
+	
+	
 
 	public List<Cliente> getClientes() {
 		return clientes;

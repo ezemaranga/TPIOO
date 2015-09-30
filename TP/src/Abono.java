@@ -1,6 +1,7 @@
 
 public class Abono {
 	
+	private int codigo;
 	private String descripcion;
 	private double precio;
 	private String tamanioCochera;
@@ -33,6 +34,14 @@ public class Abono {
 
 	public void setTamanioCochera(String tamanio) {
 		this.tamanioCochera = tamanio;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 
 }

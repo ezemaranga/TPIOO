@@ -41,7 +41,7 @@ public class Main {
 			System.out.println(cliente.getNombre());
 		}
 		System.out.println("-------------------------");
-		sistema.bajaCliente("6");
+		sistema.eliminarCliente("6");
 		for (Cliente cliente : sistema.getClientes()) {
 			System.out.println(cliente.getNombre());
 		}
@@ -75,12 +75,12 @@ public class Main {
 	}
 	
 	private static void altaMockAbonos(SistemaCocheras sistema) {
-		sistema.agregarAbono("mensual", 800, "chica");
-		sistema.agregarAbono("mensual", 1000, "mediana");
-		sistema.agregarAbono("mensual", 1200, "grande");
-		sistema.agregarAbono("quincenal", 500, "chica");
-		sistema.agregarAbono("quincenal", 600, "mediana");
-		sistema.agregarAbono("quincenal", 700, "grande");
+		sistema.crearAbono("mensual", 800, "chica");
+		sistema.crearAbono("mensual", 1000, "mediana");
+		sistema.crearAbono("mensual", 1200, "grande");
+		sistema.crearAbono("quincenal", 500, "chica");
+		sistema.crearAbono("quincenal", 600, "mediana");
+		sistema.crearAbono("quincenal", 700, "grande");
 	}
 
 
