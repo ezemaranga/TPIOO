@@ -40,11 +40,31 @@ public class SistemaCocheras {
 		return null;
 	}
 	
+
+	/**
+	 * Se elimina el cliente y sus contratos
+	 * 
+	 * @param dni
+	 * @return true si elimino el cliente, o false si no existia
+	 * 
+	 */
 	public boolean bajaCliente(String dni) {
 		
+		// obtengo el cliente
 		Cliente cliente = buscarCliente(dni);
 		
+		// si existe, verifico sus contratos
 		if(cliente != null) {
+			
+			// obtengo sus contratos
+			List<Contrato> contratosCliente = buscarContratosCLiente(dni);
+			
+			for (Contrato contrato : contratosCliente) {
+				// elimino sus coontratos
+				bajaContrato(contrato.getNumeroContrato());
+			}
+			
+			// elimino el cliente
 			clientes.remove(cliente);
 			return true;
 		}
@@ -52,6 +72,37 @@ public class SistemaCocheras {
 		return false;
 	}
 	
+
+	/**
+	 * Elimina el contrato
+	 * 
+	 * @param numeroContrato
+	 */
+	private void bajaContrato(long numeroContrato) {
+		for(Contrato contrato : contratos) {
+			if(contrato.getNumeroContrato() == numeroContrato) {
+				contratos.remove(contrato);
+			}
+		}
+		
+	}
+
+	/**
+	 * Devuelve los contratos del cliente cuyo dni se recibe como parametro
+	 * @param dni
+	 * @return
+	 */
+	public List<Contrato> buscarContratosCLiente(String dni) {
+		List<Contrato> contratosCliente = new ArrayList<Contrato>();
+		for(Contrato contrato : contratos) {
+			if (contrato.getCliente().getDni() == dni) {
+				contratosCliente.add(contrato);
+			}
+		}
+		return contratosCliente;
+	}
+	
+
 	public void crearAbono(String descripcion, double precio) {
 		Abono abono = new Abono(descripcion, precio);
 		//alguna validacion supongo
@@ -64,8 +115,36 @@ public class SistemaCocheras {
 		cocheras.add(cochera);
 	}
 	
+	
+//	public void crearContrato(Cliente cliente, Abono abono, Auto auto, String tipoContrato) {
+//		
+//		Contrato contrato;
+//		if (tipoContrato.equals("cheque")) {
+//			contrato = new ContratoCheque();
+//		}
+//		if (tipoContrato.equals("efectivo")) {
+//			contrato = new ContratoEfectivo();
+//		}
+//		if (tipoContrato.equals("cbu")) {
+//			contrato = new ContratoCbu();
+//		}
+//		if (tipoContrato.equals("credito")) {
+//			contrato = new ContratoCredito();
+//		}
+//		
+//		contratos.add(contrato);
+//	}
+
 	public List<Cliente> getClientes() {
 		return clientes;
+	}
+	
+	public List<Contrato> getContratos() {
+		return contratos;
+	}
+
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
 	}
 
 }

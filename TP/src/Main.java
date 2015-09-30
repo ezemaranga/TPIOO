@@ -7,6 +7,22 @@ public class Main {
 		
 		altaMockClientes(sistema);
 		
+		for (Cliente cliente : sistema.getClientes()) {
+			System.out.println(cliente.getNombre());
+		}
+		
+//		System.out.println(
+//				sistema.buscarCliente("7").getNombre()
+//		);
+		
+		System.out.println("-------------------------");
+		
+		sistema.bajaCliente("6");
+		
+		for (Cliente cliente : sistema.getClientes()) {
+			System.out.println(cliente.getNombre());
+		}
+		
 		
 	}
 	
@@ -20,6 +36,10 @@ public class Main {
 		sistema.crearCliente("7", "Eugenia");
 		sistema.crearCliente("8", "Alan");
 		sistema.crearCliente("9", "Migue");
+	}
+	
+	private static void altaMockContratos(SistemaCocheras sistema) {
+		
 	}
 
 }
