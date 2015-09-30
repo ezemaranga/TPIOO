@@ -16,6 +16,8 @@ public class SistemaCocheras {
 		contratos = new ArrayList<Contrato>();
 	}
 	
+
+
 	public boolean crearCliente(String dni, String nombre) {
 		
 		Cliente cliente = buscarCliente(dni);
@@ -102,9 +104,14 @@ public class SistemaCocheras {
 		return contratosCliente;
 	}
 	
-
-	public void crearAbono(String descripcion, double precio) {
-		Abono abono = new Abono(descripcion, precio);
+	public void agregarAbono(String descripcion, double precio, String tamanioCochera) {
+		Abono abono = new Abono(descripcion, precio, tamanioCochera);
+		//alguna validacion supongo
+		abonos.add(abono);
+	}
+	
+	public void eliminarAbono(String descripcion, double precio, String tamanioCochera) {
+		Abono abono = new Abono(descripcion, precio, tamanioCochera);
 		//alguna validacion supongo
 		abonos.add(abono);
 	}
@@ -115,28 +122,35 @@ public class SistemaCocheras {
 		cocheras.add(cochera);
 	}
 	
-	
-//	public void crearContrato(Cliente cliente, Abono abono, Auto auto, String tipoContrato) {
-//		
-//		Contrato contrato;
-//		if (tipoContrato.equals("cheque")) {
-//			contrato = new ContratoCheque();
-//		}
-//		if (tipoContrato.equals("efectivo")) {
-//			contrato = new ContratoEfectivo();
-//		}
-//		if (tipoContrato.equals("cbu")) {
-//			contrato = new ContratoCbu();
-//		}
-//		if (tipoContrato.equals("credito")) {
-//			contrato = new ContratoCredito();
-//		}
-//		
-//		contratos.add(contrato);
-//	}
+	public void crearContrato(Cliente cliente, Abono abono, Auto auto, String tipoContrato) {
+		
+		Contrato contrato = null;
+		if (tipoContrato.equals("cheque")) {
+			contrato = new ContratoCheque();
+		}
+		if (tipoContrato.equals("efectivo")) {
+			contrato = new ContratoEfectivo();
+		}
+		if (tipoContrato.equals("cbu")) {
+			contrato = new ContratoCbu();
+		}
+		if (tipoContrato.equals("credito")) {
+			contrato = new ContratoCredito();
+		}
+		
+		contratos.add(contrato);
+	}
 
 	public List<Cliente> getClientes() {
 		return clientes;
+	}
+	
+	public List<Abono> getAbonos() {
+		return abonos;
+	}
+
+	public void setAbonos(List<Abono> abonos) {
+		this.abonos = abonos;
 	}
 	
 	public List<Contrato> getContratos() {
