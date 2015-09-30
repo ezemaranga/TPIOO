@@ -86,8 +86,8 @@ public class SistemaCocheras {
 	}
 	
 	
-	public void crearAbono(String descripcion, double precio, String tamanioCochera) {
-		Abono abono = new Abono(descripcion, precio, tamanioCochera);
+	public void crearAbono(String descripcion, double precio, String tamanioCochera, int codigo) {
+		Abono abono = new Abono(descripcion, precio, tamanioCochera, codigo);
 		//alguna validacion supongo
 		abonos.add(abono);
 	}

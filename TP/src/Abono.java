@@ -6,7 +6,8 @@ public class Abono {
 	private double precio;
 	private String tamanioCochera;
 	
-	public Abono(String descripcion, double precio, String tamanioCochera) {
+	public Abono(String descripcion, double precio, String tamanioCochera, int codigo) {
+		this.codigo = codigo;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.tamanioCochera = tamanioCochera;

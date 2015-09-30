@@ -75,12 +75,12 @@ public class Main {
 	}
 	
 	private static void altaMockAbonos(SistemaCocheras sistema) {
-		sistema.crearAbono("mensual", 800, "chica");
-		sistema.crearAbono("mensual", 1000, "mediana");
-		sistema.crearAbono("mensual", 1200, "grande");
-		sistema.crearAbono("quincenal", 500, "chica");
-		sistema.crearAbono("quincenal", 600, "mediana");
-		sistema.crearAbono("quincenal", 700, "grande");
+		sistema.crearAbono("mensual", 800, "chica", 1);
+		sistema.crearAbono("mensual", 1000, "mediana", 2);
+		sistema.crearAbono("mensual", 1200, "grande", 3);
+		sistema.crearAbono("quincenal", 500, "chica", 4);
+		sistema.crearAbono("quincenal", 600, "mediana", 5);
+		sistema.crearAbono("quincenal", 700, "grande", 6);
 	}
 
 
