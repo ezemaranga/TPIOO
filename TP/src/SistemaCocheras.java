@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -107,20 +108,25 @@ public class SistemaCocheras {
 	}
 	
 
-	public void crearContrato(Cliente cliente, Abono abono, Auto auto, String tipoContrato) {
+	public void crearContrato(Cliente cliente, Abono abono, Auto auto, Cochera cochera, String tipoContrato, int numContrato) {
 		
 		Contrato contrato = null;
 		if (tipoContrato.equals("cheque")) {
-			contrato = new ContratoCheque();
+			contrato = new ContratoCheque(cliente,abono,auto,cochera,numContrato);
 		}
 		if (tipoContrato.equals("efectivo")) {
-			contrato = new ContratoEfectivo();
+			contrato = new ContratoEfectivo(cliente,abono,auto,cochera,numContrato);
 		}
 		if (tipoContrato.equals("cbu")) {
-			contrato = new ContratoCbu();
+			String entidadBancaria = "asd"; //Validar como se hace esto
+			String cbu = "asd";				//Validar como se hace esto
+			contrato = new ContratoCbu(cliente,abono,auto,cochera,numContrato,entidadBancaria,cbu);
 		}
 		if (tipoContrato.equals("credito")) {
-			contrato = new ContratoCredito();
+			String entidadEmisora = "asd"; 	//Validar como se hace esto
+			int numTarjeta = 12345;			//Validar como se hace esto
+			Date fechaVenc = new Date();	//Validar como se hace esto
+			contrato = new ContratoCredito(cliente,abono,auto,cochera,numContrato,entidadEmisora,numTarjeta,fechaVenc);
 		}
 		
 		contratos.add(contrato);

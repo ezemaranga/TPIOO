@@ -25,8 +25,9 @@ public class Main {
 		Auto auto = new Auto("ABC123", "Honda", "Civic");
 		cliente.agregarAuto(auto);
 		Abono abono = sistema.getAbonos().get(0);
+		Cochera cochera = sistema.buscarCocheraDisponible("grande");
 		
-		sistema.crearContrato(cliente, abono, auto, "efectivo");
+		sistema.crearContrato(cliente, abono, auto, cochera, "efectivo", 123);
 		System.out.println(sistema.getContratos());
 	}
 

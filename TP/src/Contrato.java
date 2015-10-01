@@ -1,10 +1,19 @@
-
-public class Contrato {
+public abstract class Contrato {
 	
-	private Abono abono;
-	private Cochera cochera;
-	private Cliente cliente;
-	private long numeroContrato;
+	protected Cliente cliente;
+	protected Abono abono;
+	protected Auto auto;
+	protected Cochera cochera;
+	protected long numeroContrato;
+	protected int numContrato;
+	
+	public Contrato(Cliente cliente,Abono abono, Auto auto, Cochera cochera, int numContrato) {
+		this.cliente = cliente;
+		this.abono = abono;
+		this.auto = auto;		
+		this.cochera = cochera;
+		this.numContrato = numContrato;
+	}
 	
 	public Abono getAbono() {
 		return abono;
