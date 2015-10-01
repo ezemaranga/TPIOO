@@ -1,3 +1,5 @@
+import java.util.Date;
+
 
 public class Main {
 	
@@ -27,7 +29,11 @@ public class Main {
 		Abono abono = sistema.getAbonos().get(0);
 		Cochera cochera = sistema.buscarCocheraDisponible("grande");
 		
-		sistema.crearContrato(cliente, abono, auto, cochera, "efectivo", 123);
+		sistema.crearContratoCheque(cliente, abono, auto, cochera, 001);
+		sistema.crearContratoEfectivo(cliente, abono, auto, cochera, 002);
+		sistema.crearContratoCbu(cliente, abono, auto, cochera, 003, "Banco XXX", "0123456789");
+		sistema.crearContratoCredito(cliente, abono, auto, cochera, 004, "Banco YYY", "012345", new Date());
+		
 		System.out.println(sistema.getContratos());
 	}
 
@@ -50,15 +56,15 @@ public class Main {
 	}
 
 	private static void altaMockClientes(SistemaCocheras sistema) {
-		sistema.crearCliente("1", "Carlos");
-		sistema.crearCliente("2", "Pepe");
-		sistema.crearCliente("3", "Maria");
-		sistema.crearCliente("4", "Ivan");
-		sistema.crearCliente("5", "Ezequiel");
-		sistema.crearCliente("6", "Tomas");
-		sistema.crearCliente("7", "Eugenia");
-		sistema.crearCliente("8", "Alan");
-		sistema.crearCliente("9", "Migue");
+		sistema.crearCliente("1", "Carlos", "", "", "");
+		sistema.crearCliente("2", "Pepe", "", "", "");
+		sistema.crearCliente("3", "Maria", "", "", "");
+		sistema.crearCliente("4", "Ivan", "", "", "");
+		sistema.crearCliente("5", "Ezequiel", "", "", "");
+		sistema.crearCliente("6", "Tomas", "", "", "");
+		sistema.crearCliente("7", "Eugenia", "", "", "");
+		sistema.crearCliente("8", "Alan", "", "", "");
+		sistema.crearCliente("9", "Migue", "", "", "");
 	}
 	
 	private static void altaMockMapaDeCocheras(SistemaCocheras sistema) {

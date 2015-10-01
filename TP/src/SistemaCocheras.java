@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 
 public class SistemaCocheras {
@@ -9,6 +10,7 @@ public class SistemaCocheras {
 	private List<Cochera> cocheras;
 	private List<Abono> abonos;
 	private List<Contrato> contratos;
+	private int numeroNuevoContrato = 1;
 	
 	public SistemaCocheras() {
 		clientes = new ArrayList<Cliente>();
@@ -19,17 +21,16 @@ public class SistemaCocheras {
 	
 
 
-	public boolean crearCliente(String dni, String nombre) {
+	public boolean crearCliente(String dni, String nombre, String mail, String telefono, String domicilio) {
 		
 		Cliente cliente = buscarCliente(dni);
 		
 		if(cliente == null) {
-			clientes.add(new Cliente(dni, nombre));
+			clientes.add(new Cliente(dni, nombre, mail, telefono, domicilio));
 			return true;
 		}
 		
 		return false;
-		
 	}
 	public boolean eliminarCliente(String dni) {
 		
@@ -48,7 +49,7 @@ public class SistemaCocheras {
 			}
 			
 			// elimino el cliente
-			clientes.remove(cliente);
+			//clientes.remove(cliente);
 			return true;
 		}
 		
@@ -62,6 +63,31 @@ public class SistemaCocheras {
 		}
 		
 		return null;
+	}
+	public boolean modificarCliente(String dni, String nombre, String mail, String telefono, String domicilio) {
+		
+		Cliente cliente = buscarCliente(dni);
+		
+		if(cliente != null) {
+			if(!nombre.isEmpty()) {
+				cliente.setNombre(nombre);
+			}
+			if(!mail.isEmpty()) {
+				cliente.setMail(mail);
+			}
+			if(!telefono.isEmpty()) {
+				cliente.setTelefono(telefono);
+			}
+			if(!domicilio.isEmpty()) {
+				cliente.setDomicilio(domicilio);
+			}
+			if(!nombre.isEmpty()) {
+				cliente.setNombre(nombre);
+			}
+			return true;
+		}
+		
+		return false;
 	}
 
 	
@@ -108,27 +134,20 @@ public class SistemaCocheras {
 	}
 	
 
-	public void crearContrato(Cliente cliente, Abono abono, Auto auto, Cochera cochera, String tipoContrato, int numContrato) {
-		
-		Contrato contrato = null;
-		if (tipoContrato.equals("cheque")) {
-			contrato = new ContratoCheque(cliente,abono,auto,cochera,numContrato);
-		}
-		if (tipoContrato.equals("efectivo")) {
-			contrato = new ContratoEfectivo(cliente,abono,auto,cochera,numContrato);
-		}
-		if (tipoContrato.equals("cbu")) {
-			String entidadBancaria = "asd"; //Validar como se hace esto
-			String cbu = "asd";				//Validar como se hace esto
-			contrato = new ContratoCbu(cliente,abono,auto,cochera,numContrato,entidadBancaria,cbu);
-		}
-		if (tipoContrato.equals("credito")) {
-			String entidadEmisora = "asd"; 	//Validar como se hace esto
-			int numTarjeta = 12345;			//Validar como se hace esto
-			Date fechaVenc = new Date();	//Validar como se hace esto
-			contrato = new ContratoCredito(cliente,abono,auto,cochera,numContrato,entidadEmisora,numTarjeta,fechaVenc);
-		}
-		
+	public void crearContratoCheque(Cliente cliente, Abono abono, Auto auto, Cochera cochera, int numContrato) {
+		Contrato contrato = new ContratoCheque(cliente,abono,auto,cochera,numContrato);
+		contratos.add(contrato);
+	}
+	public void crearContratoEfectivo(Cliente cliente, Abono abono, Auto auto, Cochera cochera, int numContrato) {
+		Contrato contrato = new ContratoEfectivo(cliente,abono,auto,cochera,numContrato);
+		contratos.add(contrato);
+	}
+	public void crearContratoCbu(Cliente cliente, Abono abono, Auto auto, Cochera cochera, int numContrato, String entidadBancaria, String cbu) {
+		Contrato contrato = new ContratoCbu(cliente,abono,auto,cochera,numContrato,entidadBancaria,cbu);
+		contratos.add(contrato);
+	}
+	public void crearContratoCredito(Cliente cliente, Abono abono, Auto auto, Cochera cochera, int numContrato, String entidadEmisora, String numTarjeta, Date fechaVenc) {
+		Contrato contrato = new ContratoCredito(cliente,abono,auto,cochera,numContrato,entidadEmisora,numTarjeta,fechaVenc);
 		contratos.add(contrato);
 	}
 	public void eliminarContrato(long numeroContrato) {
@@ -150,7 +169,43 @@ public class SistemaCocheras {
 	
 	
 	
+	public boolean generarNuevoContrato(String dniCliente, String patenteAuto, 
+			String tipoContrato, Abono abono, String entidad, String numero, Date fecha) {
+		
+		Cliente cliente = buscarCliente(dniCliente);
+		if (cliente == null) {
+			return false;
+		}
+		
+		Auto autoAGuardar = null;
+		for (Auto auto : cliente.getAutos()) {
+			if (auto.getPatente() == patenteAuto) {
+				autoAGuardar = auto;
+			}
+		}
+		if (autoAGuardar == null) {
+			return false;
+		}
+		
+		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
+		
+		if(tipoContrato == "cheque") {
+			crearContratoCheque(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato);
+		}
+		if(tipoContrato == "efectivo") {
+			crearContratoEfectivo(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato);
+		}
+		if(tipoContrato == "cbu") {
+			crearContratoCbu(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato, numero, entidad);
+		}
+		if(tipoContrato == "credito") {
+			crearContratoCredito(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato, entidad, numero, fecha);
+		}
+		
+		numeroNuevoContrato++;
+		return true;
 
+	}
 	
 	
 
