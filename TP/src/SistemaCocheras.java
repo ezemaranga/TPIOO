@@ -190,15 +190,6 @@ public class SistemaCocheras {
 		return true;
 
 	}
-
-	public void eliminarContrato(long numeroContrato) {
-		for(Contrato contrato : contratos) {
-			if(contrato.getNumeroContrato() == numeroContrato) {
-				contratos.remove(contrato);
-				break;
-			}
-		}	
-	}
 	
 	public List<Contrato> buscarContratosCliente(String dni) {
 		List<Contrato> contratosCliente = new ArrayList<Contrato>();
