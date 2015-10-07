@@ -8,63 +8,74 @@ public class Main {
 		SistemaCocheras sistema = new SistemaCocheras();
 		
 		altaMockClientes(sistema);
+		
 		altaMockMapaDeCocheras(sistema);
+		
 		altaMockAbonos(sistema);
 		
-//		testeoBajaCliente(sistema);
-//		testeoBuscarCliente(sistema);
+		testeoBajaCliente(sistema);
+		
+		testeoBuscarCliente(sistema);
+		
+		testeoBuscarCocheraDisponible(sistema);
+		
+		testeoCambiarEstadoCochera(sistema);
+		
 		testeoCrearContrato(sistema);
 		
-		
-		
-		
-		
 	}
-	
 
 	private static void testeoCrearContrato(SistemaCocheras sistema) {
-		Cliente cliente = sistema.buscarCliente("5");
-		Auto auto = new Auto("ABC123", "Honda", "Civic");
-		cliente.agregarAuto(auto);
-		Abono abono = sistema.getAbonos().get(0);
-		Cochera cochera = sistema.buscarCocheraDisponible("grande");
-		
-		sistema.crearContratoCheque(cliente, abono, auto, cochera, 001);
-		sistema.crearContratoEfectivo(cliente, abono, auto, cochera, 002);
-		sistema.crearContratoCbu(cliente, abono, auto, cochera, 003, "Banco XXX", "0123456789");
-		sistema.crearContratoCredito(cliente, abono, auto, cochera, 004, "Banco YYY", "012345", new Date());
-		
-		System.out.println(sistema.getContratos());
+		sistema.generarNuevoContrato("1", "ABC123", "cbu", sistema.getAbonos().get(1), "Banco Santander", "012345", new Date());
+		sistema.generarNuevoContrato("2", "YYY333", "efectivo", sistema.getAbonos().get(2), null, null, null);
+		sistema.generarNuevoContrato("3", "ASD678", "credito", sistema.getAbonos().get(3), "Citibank", "8246723409580", new Date());
+		System.out.println("----------CONTRATOS GENERADOS--------------");
+		sistema.imprimitContratos();
 	}
 
 	private static void testeoBuscarCliente(SistemaCocheras sistema) {
-		System.out.println(
-				sistema.buscarCliente("5").getNombre()
-			);
+		System.out.println("----------BUSCANDO CLIENTE DNI 5--------------");
+		Cliente cliente = sistema.buscarCliente("5");
+		System.out.println(cliente.getNombre() + " dni:" + cliente.getDni());
 	}
 
 	private static void testeoBajaCliente(SistemaCocheras sistema) {
-		for (Cliente cliente : sistema.getClientes()) {
-			System.out.println(cliente.getNombre());
-		}
-		System.out.println("-------------------------");
+		System.out.println("------------ELIMINANDO CLIENTE DNI 4 -------------");
+		sistema.eliminarCliente("4");
+		System.out.println("------------ELIMINANDO CLIENTE DNI 6 -------------");
 		sistema.eliminarCliente("6");
-		for (Cliente cliente : sistema.getClientes()) {
-			System.out.println(cliente.getNombre());
-		}
+		System.out.println("------------ELIMINANDO CLIENTE DNI 8 -------------");
+		sistema.eliminarCliente("8");
 		
+		System.out.println("------------ CLIENTES ACTIVOS: -------------");
+		sistema.imprimirClientes();
 	}
 
 	private static void altaMockClientes(SistemaCocheras sistema) {
 		sistema.crearCliente("1", "Carlos", "", "", "");
+		
+		Cliente cliente = sistema.buscarCliente("1");
+		cliente.agregarAuto(new Auto("ABC123", "Honda", "Civic", "Grande"));
+		
 		sistema.crearCliente("2", "Pepe", "", "", "");
+		
+		cliente = sistema.buscarCliente("2");
+		cliente.agregarAuto(new Auto("YYY333", "Peugeot", "207", "Mediana"));
+		
 		sistema.crearCliente("3", "Maria", "", "", "");
+		
+		cliente = sistema.buscarCliente("3");
+		cliente.agregarAuto(new Auto("ASD678", "Fiat", "600", "Chica"));
+		
 		sistema.crearCliente("4", "Ivan", "", "", "");
 		sistema.crearCliente("5", "Ezequiel", "", "", "");
 		sistema.crearCliente("6", "Tomas", "", "", "");
 		sistema.crearCliente("7", "Eugenia", "", "", "");
 		sistema.crearCliente("8", "Alan", "", "", "");
 		sistema.crearCliente("9", "Migue", "", "", "");
+		
+		System.out.println("---------CLIENTES CREADOS-------------");
+		sistema.imprimirClientes();
 	}
 	
 	private static void altaMockMapaDeCocheras(SistemaCocheras sistema) {
@@ -79,6 +90,9 @@ public class Main {
 		sistema.crearCochera(9, "Mediana");
 		sistema.crearCochera(10, "Grande");
 		sistema.crearCochera(11, "Chica");
+		
+		System.out.println("-------COCHERAS CREADAS----------");
+		sistema.imprimirCocheras();
 	}
 	
 	private static void altaMockAbonos(SistemaCocheras sistema) {
@@ -88,7 +102,22 @@ public class Main {
 		sistema.crearAbono("quincenal", 500, "chica", 4);
 		sistema.crearAbono("quincenal", 600, "mediana", 5);
 		sistema.crearAbono("quincenal", 700, "grande", 6);
+		
+		System.out.println("------ABONOS CREADOS--------");
+		sistema.imprimirAbonos();
 	}
-
+	
+	private static void testeoBuscarCocheraDisponible(SistemaCocheras sistema) {
+		System.out.println("----BUSCANDO COCHERA MEDIANA DISPONIBLE----");
+		Cochera cochera = sistema.buscarCocheraDisponible("Mediana");
+		System.out.println(cochera.getNumero() + " tamanio: " +cochera.getTamanio());
+	}
+	
+	private static void testeoCambiarEstadoCochera(SistemaCocheras sistema) {
+		System.out.println("----OCUPANDO COCHERA MEDIANA NUMERO 2----");
+		sistema.cambiarEstadoCochera(2, false);
+		testeoBuscarCocheraDisponible(sistema);
+	}
+	
 
 }

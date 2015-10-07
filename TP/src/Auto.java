@@ -9,10 +9,11 @@ public class Auto {
 	private String tamanio;
 	private Date fechaEntrada;
 	
-	public Auto(String patente, String marca, String modelo) {
+	public Auto(String patente, String marca, String modelo, String tamanio) {
 		this.patente = patente;
 		this.marca = marca;
 		this.modelo = modelo;
+		this.tamanio = tamanio;
 	}
 	
 	public String getPatente() {

@@ -9,7 +9,7 @@ public class Cliente {
 	private String mail;
 	private String telefono;
 	private String nombre;
-	private List<Auto> Autos;
+	private List<Auto> autos;
 
 	public Cliente(String dni, String nombre, String mail, String telefono, String domicilio) {
 		this.dni = dni;
@@ -17,12 +17,12 @@ public class Cliente {
 		this.mail = mail;
 		this.telefono = telefono;
 		this.domicilio = domicilio;
-		this.Autos = new ArrayList<Auto>();
+		this.autos = new ArrayList<Auto>();
 	}
 	
 	
 	public void agregarAuto(Auto auto) {
-		this.Autos.add(auto);		
+		this.autos.add(auto);		
 	}
 
 
@@ -67,12 +67,12 @@ public class Cliente {
 
 
 	public List<Auto> getAutos() {
-		return Autos;
+		return autos;
 	}
 
 
 	public void setAutos(List<Auto> autos) {
-		Autos = autos;
+		this.autos = autos;
 	}
 
 

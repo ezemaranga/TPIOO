@@ -4,15 +4,14 @@ public abstract class Contrato {
 	protected Abono abono;
 	protected Auto auto;
 	protected Cochera cochera;
-	protected long numeroContrato;
-	protected int numContrato;
+	protected int numeroContrato;
 	
 	public Contrato(Cliente cliente,Abono abono, Auto auto, Cochera cochera, int numContrato) {
 		this.cliente = cliente;
 		this.abono = abono;
 		this.auto = auto;		
 		this.cochera = cochera;
-		this.numContrato = numContrato;
+		this.numeroContrato = numContrato;
 	}
 	
 	public Abono getAbono() {
@@ -33,10 +32,10 @@ public abstract class Contrato {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public long getNumeroContrato() {
+	public int getNumeroContrato() {
 		return numeroContrato;
 	}
-	public void setNumeroContrato(long numeroContrato) {
+	public void setNumeroContrato(int numeroContrato) {
 		this.numeroContrato = numeroContrato;
 	}
 
