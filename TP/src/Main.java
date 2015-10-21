@@ -26,9 +26,9 @@ public class Main {
 	}
 
 	private static void testeoCrearContrato(SistemaCocheras sistema) {
-		sistema.generarNuevoContrato("1", "ABC123", "cbu", sistema.getAbonos().get(1), "Banco Santander", "012345", new Date());
-		sistema.generarNuevoContrato("2", "YYY333", "efectivo", sistema.getAbonos().get(2), null, null, null);
-		sistema.generarNuevoContrato("3", "ASD678", "credito", sistema.getAbonos().get(3), "Citibank", "8246723409580", new Date());
+		//sistema.crearContratoCbu("1", "ABC123", sistema.getAbonos().get(1), "Banco Santander", "012345", new Date());
+		//sistema.crearContratoEfectivo("2", "YYY333", sistema.getAbonos().get(2), null, null, null);
+		//sistema.generarNuevoContrato("3", "ASD678", "credito", sistema.getAbonos().get(3), "Citibank", "8246723409580", new Date());
 		System.out.println("----------CONTRATOS GENERADOS--------------");
 		sistema.imprimitContratos();
 	}

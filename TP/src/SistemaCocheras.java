@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 public class SistemaCocheras {
 	
 	private List<Cliente> clientes;
@@ -11,6 +10,7 @@ public class SistemaCocheras {
 	private List<Contrato> contratos;
 	private int numeroNuevoContrato = 1;
 	
+	//Constructor
 	public SistemaCocheras() {
 		clientes = new ArrayList<Cliente>();
 		cocheras = new ArrayList<Cochera>();
@@ -18,6 +18,39 @@ public class SistemaCocheras {
 		contratos = new ArrayList<Contrato>();
 	}
 	
+	//Getters y Setters
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public List<Cochera> getCocheras() {
+		return cocheras;
+	}
+
+	public void setCocheras(List<Cochera> cocheras) {
+		this.cocheras = cocheras;
+	}
+
+	public List<Abono> getAbonos() {
+		return abonos;
+	}
+
+	public void setAbonos(List<Abono> abonos) {
+		this.abonos = abonos;
+	}
+
+	public List<Contrato> getContratos() {
+		return contratos;
+	}
+
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
+	}
+
 	//ABM de Clientes
 	public boolean crearCliente(String dni, String nombre, String mail, String telefono, String domicilio) {
 		
@@ -149,48 +182,94 @@ public class SistemaCocheras {
 	}
 	
 	//ABM de Contratos
-	public boolean generarNuevoContrato(String dniCliente, String patenteAuto, String tipoContrato, Abono abono, String entidad, String numero, Date fecha) {
-		
+	public boolean crearContratoCheque(String dniCliente, Abono abono, String patenteAuto) {
+		//busco el cliente
 		Cliente cliente = buscarCliente(dniCliente);
-		if (cliente == null) {
-			return false;
-		}
-		
+		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
 			if (auto.getPatente() == patenteAuto) {
 				autoAGuardar = auto;
 			}
 		}
-		if (autoAGuardar == null) {
-			return false;
-		}
-		
+		//busco una cochera
 		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
-		
-		Contrato contrato = null;
-		if(tipoContrato == "cheque") {
-			contrato = new ContratoCheque(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato);
-		} else if(tipoContrato == "efectivo") {
-			contrato = new ContratoEfectivo(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato);
-		} else if(tipoContrato == "cbu") {
-			contrato = new ContratoCbu(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato, entidad, numero);
-		} else if(tipoContrato == "credito") {
-			contrato = new ContratoCredito(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato, entidad, numero, fecha);
-		}
-		
-		if (contrato == null) {
+		//si se cumplen las condiciones creo el contrato
+		if (cliente == null || autoAGuardar == null || cochera == null)
 			return false;
-		}
-		
+		Contrato contrato = new ContratoCheque(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato);
 		cambiarEstadoCochera(cochera.getNumero(), false);
 		contratos.add(contrato);
 		numeroNuevoContrato++;
-		
-		return true;
-
+		return (contrato != null);	
 	}
 	
+	public boolean crearContratoEfectivo(String dniCliente, Abono abono, String patenteAuto) {
+		//busco el cliente
+		Cliente cliente = buscarCliente(dniCliente);
+		//busco el auto del cliente
+		Auto autoAGuardar = null;
+		for (Auto auto : cliente.getAutos()) {
+			if (auto.getPatente() == patenteAuto) {
+				autoAGuardar = auto;
+			}
+		}
+		//busco una cochera
+		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
+		//si se cumplen las condiciones creo el contrato
+		if (cliente == null || autoAGuardar == null || cochera == null)
+			return false;
+		Contrato contrato = new ContratoEfectivo(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato);
+		cambiarEstadoCochera(cochera.getNumero(), false);
+		contratos.add(contrato);
+		numeroNuevoContrato++;
+		return (contrato != null);
+	}
+	
+	public boolean crearContratoCBU(String dniCliente, Abono abono, String patenteAuto, String entidad, String nroCBU) {
+		//busco el cliente
+		Cliente cliente = buscarCliente(dniCliente);
+		//busco el auto del cliente
+		Auto autoAGuardar = null;
+		for (Auto auto : cliente.getAutos()) {
+			if (auto.getPatente() == patenteAuto) {
+				autoAGuardar = auto;
+			}
+		}
+		//busco una cochera
+		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
+		//si se cumplen las condiciones creo el contrato
+		if (cliente == null || autoAGuardar == null || cochera == null)
+			return false;
+		Contrato contrato = new ContratoCbu(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato, entidad, nroCBU);
+		cambiarEstadoCochera(cochera.getNumero(), false);
+		contratos.add(contrato);
+		numeroNuevoContrato++;
+		return (contrato != null);	
+	}
+	
+	public boolean crearContratoCredito(String dniCliente, Abono abono, String patenteAuto, String entidad, String nroTarjeta, Date fechaVenc) {
+		//busco el cliente
+		Cliente cliente = buscarCliente(dniCliente);
+		//busco el auto del cliente
+		Auto autoAGuardar = null;
+		for (Auto auto : cliente.getAutos()) {
+			if (auto.getPatente() == patenteAuto) {
+				autoAGuardar = auto;
+			}
+		}
+		//busco una cochera
+		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
+		//si se cumplen las condiciones creo el contrato
+		if (cliente == null || autoAGuardar == null || cochera == null)
+			return false;
+		Contrato contrato = new ContratoCredito(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato, entidad, nroTarjeta, fechaVenc);
+		cambiarEstadoCochera(cochera.getNumero(), false);
+		contratos.add(contrato);
+		numeroNuevoContrato++;
+		return (contrato != null);
+	}
+		
 	public List<Contrato> buscarContratosCliente(String dni) {
 		List<Contrato> contratosCliente = new ArrayList<Contrato>();
 		for(Contrato contrato : contratos) {
@@ -219,6 +298,7 @@ public class SistemaCocheras {
 		return null;
 	}
 
+	//Impresiones
 	public void imprimirClientes() {
 		for(Cliente cliente : clientes) {
 			System.out.println(cliente.getNombre() + " dni: " + cliente.getDni());
@@ -242,26 +322,6 @@ public class SistemaCocheras {
 			System.out.println(contrato.getNumeroContrato() + " abono: " + contrato.getAbono().getDescripcion() +
 							  " cliente: " + contrato.getCliente().getNombre() + " cochera: " + contrato.getCochera().getNumero());
 		}
-	}
-
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-	
-	public List<Abono> getAbonos() {
-		return abonos;
-	}
-
-	public void setAbonos(List<Abono> abonos) {
-		this.abonos = abonos;
-	}
-	
-	public List<Contrato> getContratos() {
-		return contratos;
-	}
-
-	public void setContratos(List<Contrato> contratos) {
-		this.contratos = contratos;
 	}
 
 }
