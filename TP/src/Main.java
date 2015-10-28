@@ -34,9 +34,9 @@ public class Main {
 	}
 
 	private static void testeoBuscarCliente(SistemaCocheras sistema) {
-		System.out.println("----------BUSCANDO CLIENTE DNI 5--------------");
-		Cliente cliente = sistema.buscarCliente("5");
-		System.out.println(cliente.getNombre() + " dni:" + cliente.getDni());
+//		System.out.println("----------BUSCANDO CLIENTE DNI 5--------------");
+//		Cliente cliente = sistema.buscarCliente("5");
+//		System.out.println(cliente.getNombre() + " dni:" + cliente.getDni());
 	}
 
 	private static void testeoBajaCliente(SistemaCocheras sistema) {
@@ -54,18 +54,18 @@ public class Main {
 	private static void altaMockClientes(SistemaCocheras sistema) {
 		sistema.crearCliente("1", "Carlos", "", "", "");
 		
-		Cliente cliente = sistema.buscarCliente("1");
-		cliente.agregarAuto(new Auto("ABC123", "Honda", "Civic", "Grande"));
-		
-		sistema.crearCliente("2", "Pepe", "", "", "");
-		
-		cliente = sistema.buscarCliente("2");
-		cliente.agregarAuto(new Auto("YYY333", "Peugeot", "207", "Mediana"));
-		
-		sistema.crearCliente("3", "Maria", "", "", "");
-		
-		cliente = sistema.buscarCliente("3");
-		cliente.agregarAuto(new Auto("ASD678", "Fiat", "600", "Chica"));
+//		Cliente cliente = sistema.buscarCliente("1");
+//		cliente.agregarAuto(new Auto("ABC123", "Honda", "Civic", "Grande"));
+//		
+//		sistema.crearCliente("2", "Pepe", "", "", "");
+//		
+//		cliente = sistema.buscarCliente("2");
+//		cliente.agregarAuto(new Auto("YYY333", "Peugeot", "207", "Mediana"));
+//		
+//		sistema.crearCliente("3", "Maria", "", "", "");
+//		
+//		cliente = sistema.buscarCliente("3");
+//		cliente.agregarAuto(new Auto("ASD678", "Fiat", "600", "Chica"));
 		
 		sistema.crearCliente("4", "Ivan", "", "", "");
 		sistema.crearCliente("5", "Ezequiel", "", "", "");

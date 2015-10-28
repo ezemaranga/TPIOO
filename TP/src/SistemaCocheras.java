@@ -88,7 +88,7 @@ public class SistemaCocheras {
 		return false;
 	}
 	
-	public Cliente buscarCliente(String dni) {	
+	private Cliente buscarCliente(String dni) {	
 		for(Cliente cliente : clientes) {
 			if(cliente.getDni().equals(dni)) {
 				return cliente;
@@ -142,7 +142,7 @@ public class SistemaCocheras {
 	
 	public Cochera buscarCocheraDisponible(String tamanio) {
 		for(Cochera cochera : cocheras) {
-			if(cochera.getTamanio() == tamanio && cochera.isDisponible()) {
+			if(cochera.getTamanio().equals(tamanio) && cochera.isDisponible()) {
 				return cochera;
 			}
 		}
@@ -152,7 +152,7 @@ public class SistemaCocheras {
 	public void cambiarEstadoCochera(int numero, boolean disponible) {
 		for (Cochera cochera : cocheras) {
 			if(cochera.getNumero() == numero) {
-				cochera.setDisponible(disponible);
+				cochera.setDisponibilidad(disponible);
 			}
 		}
 	}

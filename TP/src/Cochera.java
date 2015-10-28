@@ -15,8 +15,8 @@ public class Cochera {
 		return disponible;
 	}
 
-	public void setDisponible(boolean disponible) {
-		this.disponible = disponible;
+	public void setDisponibilidad(boolean disponibilidad) {
+		this.disponible = disponibilidad;
 	}
 
 	public int getNumero() {
