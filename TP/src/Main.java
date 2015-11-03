@@ -13,30 +13,32 @@ public class Main {
 		
 		altaMockAbonos(sistema);
 		
-		testeoBajaCliente(sistema);
 		
-		testeoBuscarCliente(sistema);
 		
-		testeoBuscarCocheraDisponible(sistema);
-		
-		testeoCambiarEstadoCochera(sistema);
-		
+//		testeoBajaCliente(sistema);
+//		
+//		testeoBuscarCliente(sistema);
+//		
+//		testeoBuscarCocheraDisponible(sistema);
+//		
+//		testeoCambiarEstadoCochera(sistema);
+//		
 		testeoCrearContrato(sistema);
+		
+		sistema.cobrarEfectivo(1, 3);
 		
 	}
 
 	private static void testeoCrearContrato(SistemaCocheras sistema) {
-		//sistema.crearContratoCbu("1", "ABC123", sistema.getAbonos().get(1), "Banco Santander", "012345", new Date());
-		//sistema.crearContratoEfectivo("2", "YYY333", sistema.getAbonos().get(2), null, null, null);
-		//sistema.generarNuevoContrato("3", "ASD678", "credito", sistema.getAbonos().get(3), "Citibank", "8246723409580", new Date());
+		sistema.crearContratoEfectivo("1", sistema.getAbonos().get(2), "ABC123");
 		System.out.println("----------CONTRATOS GENERADOS--------------");
 		sistema.imprimitContratos();
 	}
 
 	private static void testeoBuscarCliente(SistemaCocheras sistema) {
-//		System.out.println("----------BUSCANDO CLIENTE DNI 5--------------");
-//		Cliente cliente = sistema.buscarCliente("5");
-//		System.out.println(cliente.getNombre() + " dni:" + cliente.getDni());
+		System.out.println("----------BUSCANDO CLIENTE DNI 5--------------");
+		Cliente cliente = sistema.buscarCliente("5");
+		System.out.println(cliente.getNombre() + " dni:" + cliente.getDni());
 	}
 
 	private static void testeoBajaCliente(SistemaCocheras sistema) {
@@ -54,18 +56,18 @@ public class Main {
 	private static void altaMockClientes(SistemaCocheras sistema) {
 		sistema.crearCliente("1", "Carlos", "", "", "");
 		
-//		Cliente cliente = sistema.buscarCliente("1");
-//		cliente.agregarAuto(new Auto("ABC123", "Honda", "Civic", "Grande"));
-//		
-//		sistema.crearCliente("2", "Pepe", "", "", "");
-//		
-//		cliente = sistema.buscarCliente("2");
-//		cliente.agregarAuto(new Auto("YYY333", "Peugeot", "207", "Mediana"));
-//		
-//		sistema.crearCliente("3", "Maria", "", "", "");
-//		
-//		cliente = sistema.buscarCliente("3");
-//		cliente.agregarAuto(new Auto("ASD678", "Fiat", "600", "Chica"));
+		Cliente cliente = sistema.buscarCliente("1");
+		cliente.agregarAuto(new Auto("ABC123", "Honda", "Civic", "Grande"));
+		
+		sistema.crearCliente("2", "Pepe", "", "", "");
+		
+		cliente = sistema.buscarCliente("2");
+		cliente.agregarAuto(new Auto("YYY333", "Peugeot", "207", "Mediana"));
+		
+		sistema.crearCliente("3", "Maria", "", "", "");
+		
+		cliente = sistema.buscarCliente("3");
+		cliente.agregarAuto(new Auto("ASD678", "Fiat", "600", "Chica"));
 		
 		sistema.crearCliente("4", "Ivan", "", "", "");
 		sistema.crearCliente("5", "Ezequiel", "", "", "");

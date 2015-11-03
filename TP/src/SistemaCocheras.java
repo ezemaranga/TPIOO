@@ -8,6 +8,7 @@ public class SistemaCocheras {
 	private List<Cochera> cocheras;
 	private List<Abono> abonos;
 	private List<Contrato> contratos;
+	private List<Cobranza> cobranzas;
 	private int numeroNuevoContrato = 1;
 	
 	//Constructor
@@ -16,6 +17,7 @@ public class SistemaCocheras {
 		cocheras = new ArrayList<Cochera>();
 		abonos = new ArrayList<Abono>();
 		contratos = new ArrayList<Contrato>();
+		cobranzas = new ArrayList<Cobranza>();
 	}
 	
 	//Getters y Setters
@@ -49,6 +51,14 @@ public class SistemaCocheras {
 
 	public void setContratos(List<Contrato> contratos) {
 		this.contratos = contratos;
+	}
+
+	private List<Cobranza> getCobranzas() {
+		return cobranzas;
+	}
+
+	private void setCobranzas(List<Cobranza> cobranzas) {
+		this.cobranzas = cobranzas;
 	}
 
 	//ABM de Clientes
@@ -88,7 +98,7 @@ public class SistemaCocheras {
 		return false;
 	}
 	
-	private Cliente buscarCliente(String dni) {	
+	public Cliente buscarCliente(String dni) {	
 		for(Cliente cliente : clientes) {
 			if(cliente.getDni().equals(dni)) {
 				return cliente;
@@ -142,7 +152,7 @@ public class SistemaCocheras {
 	
 	public Cochera buscarCocheraDisponible(String tamanio) {
 		for(Cochera cochera : cocheras) {
-			if(cochera.getTamanio().equals(tamanio) && cochera.isDisponible()) {
+			if(cochera.getTamanio() == tamanio && cochera.isDisponible()) {
 				return cochera;
 			}
 		}
@@ -152,7 +162,7 @@ public class SistemaCocheras {
 	public void cambiarEstadoCochera(int numero, boolean disponible) {
 		for (Cochera cochera : cocheras) {
 			if(cochera.getNumero() == numero) {
-				cochera.setDisponibilidad(disponible);
+				cochera.setDisponible(disponible);
 			}
 		}
 	}
@@ -298,6 +308,38 @@ public class SistemaCocheras {
 		return null;
 	}
 
+	//Cobranzas
+	public boolean cobrarEfectivo(int numeroContrato, double monto){
+		//busco el contrato
+		Contrato cont = buscarContrato(numeroContrato);
+		//Creo la cobranza
+		if(cont != null){
+			Cobranza cobranza = new CobranzaEfectivo(cont, new Date(), monto);
+			cobranzas.add(cobranza);
+			return true;
+		}
+		return false;
+	}
+	public boolean cobrarCheque(int numeroContrato, double monto, String entidadEmisora, String numCheque){
+		//busco el contrato
+		Contrato cont = buscarContrato(numeroContrato);
+		//Creo la cobranza
+		if(cont != null){
+			Cobranza cobranza = new CobranzaCheque(cont, new Date(), monto, entidadEmisora, numCheque);
+			cobranzas.add(cobranza);
+			return true;
+		}
+		return false;
+	}
+	public boolean cobrarCredito(int numeroContrato, double monto){
+		//HAY QUE AUTOMATIZAR ESTO!
+		return false;
+	}
+	public boolean cobrarCbu(int numeroContrato, double monto){
+		//HAY QUE AUTOMATIZAR ESTO!
+		return false;
+	}
+	
 	//Impresiones
 	public void imprimirClientes() {
 		for(Cliente cliente : clientes) {
