@@ -1,4 +1,6 @@
+import java.awt.event.ContainerAdapter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -320,6 +322,7 @@ public class SistemaCocheras {
 		}
 		return false;
 	}
+	
 	public boolean cobrarCheque(int numeroContrato, double monto, String entidadEmisora, String numCheque){
 		//busco el contrato
 		Contrato cont = buscarContrato(numeroContrato);
@@ -331,10 +334,31 @@ public class SistemaCocheras {
 		}
 		return false;
 	}
-	public boolean cobrarCredito(int numeroContrato, double monto){
-		//HAY QUE AUTOMATIZAR ESTO!
-		return false;
+	
+	public List<Contrato> cobrarCreditoBatch(int numeroContrato, double monto){
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, +10);
+		Calendar venc = Calendar.getInstance();
+		//cal.getTime();
+		Date fechaVenc = new Date();
+		List<Contrato> aCobrar = null;
+		for(Contrato c : contratos){
+			if (c.tipo == "Credito"){
+				if (c.abono.getDescripcion() == "quincenal" ){
+					//ALGO
+				}else{
+					//ALGO
+				}
+				if (fechaVenc == cal.getTime()){
+					aCobrar.add(c);
+				}	
+			}
+		}
+		
+				
+		return aCobrar;
 	}
+	
 	public boolean cobrarCbu(int numeroContrato, double monto){
 		//HAY QUE AUTOMATIZAR ESTO!
 		return false;

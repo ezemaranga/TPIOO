@@ -5,6 +5,7 @@ public class ContratoCbu extends Contrato {
 	
 	public ContratoCbu(Cliente cliente, Abono abono, Auto auto, Cochera cochera, int numContrato, String entidadBancaria, String  cbu){
 		super(cliente,abono,auto,cochera,numContrato);
+		this.tipo = "CBU";
 		this.entidadBancaria = entidadBancaria;
 		this.cbu = cbu;
 

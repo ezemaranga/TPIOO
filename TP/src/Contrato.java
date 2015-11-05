@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public abstract class Contrato {
 	
 	protected Cliente cliente;
@@ -5,13 +7,25 @@ public abstract class Contrato {
 	protected Auto auto;
 	protected Cochera cochera;
 	protected int numeroContrato;
+	protected String tipo;
+	protected Date fechaContrato;
 	
-	public Contrato(Cliente cliente,Abono abono, Auto auto, Cochera cochera, int numContrato) {
+	public Contrato(Cliente cliente, Abono abono, Auto auto, Cochera cochera, int numContrato) {
 		this.cliente = cliente;
 		this.abono = abono;
 		this.auto = auto;		
 		this.cochera = cochera;
 		this.numeroContrato = numContrato;
+		this.tipo = tipo;
+		this.fechaContrato = new Date();
+	}
+	
+	private String getTipo() {
+		return tipo;
+	}
+
+	private void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	public Abono getAbono() {
@@ -38,5 +52,6 @@ public abstract class Contrato {
 	public void setNumeroContrato(int numeroContrato) {
 		this.numeroContrato = numeroContrato;
 	}
+	
 
 }
