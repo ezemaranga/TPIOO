@@ -197,6 +197,10 @@ public class SistemaCocheras {
 	public boolean crearContratoCheque(String dniCliente, Abono abono, String patenteAuto) {
 		//busco el cliente
 		Cliente cliente = buscarCliente(dniCliente);
+		if (cliente == null){
+			return false;
+		}
+		
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
@@ -207,7 +211,7 @@ public class SistemaCocheras {
 		//busco una cochera
 		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
 		//si se cumplen las condiciones creo el contrato
-		if (cliente == null || autoAGuardar == null || cochera == null)
+		if (autoAGuardar == null || cochera == null)
 			return false;
 		Contrato contrato = new ContratoCheque(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato);
 		cambiarEstadoCochera(cochera.getNumero(), false);
@@ -219,6 +223,9 @@ public class SistemaCocheras {
 	public boolean crearContratoEfectivo(String dniCliente, Abono abono, String patenteAuto) {
 		//busco el cliente
 		Cliente cliente = buscarCliente(dniCliente);
+		if (cliente == null){
+			return false;
+		}
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
@@ -229,7 +236,7 @@ public class SistemaCocheras {
 		//busco una cochera
 		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
 		//si se cumplen las condiciones creo el contrato
-		if (cliente == null || autoAGuardar == null || cochera == null)
+		if (autoAGuardar == null || cochera == null)
 			return false;
 		Contrato contrato = new ContratoEfectivo(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato);
 		cambiarEstadoCochera(cochera.getNumero(), false);
@@ -241,6 +248,10 @@ public class SistemaCocheras {
 	public boolean crearContratoCBU(String dniCliente, Abono abono, String patenteAuto, String entidad, String nroCBU) {
 		//busco el cliente
 		Cliente cliente = buscarCliente(dniCliente);
+		if (cliente == null){
+			return false;
+		}
+		
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
@@ -251,7 +262,7 @@ public class SistemaCocheras {
 		//busco una cochera
 		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
 		//si se cumplen las condiciones creo el contrato
-		if (cliente == null || autoAGuardar == null || cochera == null)
+		if (autoAGuardar == null || cochera == null)
 			return false;
 		Contrato contrato = new ContratoCbu(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato, entidad, nroCBU);
 		cambiarEstadoCochera(cochera.getNumero(), false);
@@ -263,6 +274,10 @@ public class SistemaCocheras {
 	public boolean crearContratoCredito(String dniCliente, Abono abono, String patenteAuto, String entidad, String nroTarjeta, Date fechaVenc) {
 		//busco el cliente
 		Cliente cliente = buscarCliente(dniCliente);
+		if (cliente == null){
+			return false;
+		}
+		
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
@@ -273,7 +288,7 @@ public class SistemaCocheras {
 		//busco una cochera
 		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
 		//si se cumplen las condiciones creo el contrato
-		if (cliente == null || autoAGuardar == null || cochera == null)
+		if (autoAGuardar == null || cochera == null)
 			return false;
 		Contrato contrato = new ContratoCredito(cliente, abono, autoAGuardar, cochera, numeroNuevoContrato, entidad, nroTarjeta, fechaVenc);
 		cambiarEstadoCochera(cochera.getNumero(), false);
