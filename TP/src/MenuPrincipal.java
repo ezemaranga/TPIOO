@@ -133,12 +133,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 									.addActionListener(new ActionListener() {
 										public void actionPerformed(
 												ActionEvent evt) {
-											/*
-											 * AltaAbonos a = new
-											 * AltaAbonos(sistema);
-											 * a.setVisible(true);
-											 */
-
+											AltaAbono a = new AltaAbono(sistema);
+											a.setVisible(true);
 										}
 									});
 						}
@@ -150,11 +146,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 									.addActionListener(new ActionListener() {
 										public void actionPerformed(
 												ActionEvent evt) {
-											/*
-											 * BajaAbonos m = new
-											 * BajaAbonos(sistema);
-											 * m.setVisible(true);
-											 */
+
+											BajaAbonos m = new BajaAbonos(
+													sistema);
+											m.setVisible(true);
+
 										}
 									});
 						}
@@ -166,11 +162,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 									.addActionListener(new ActionListener() {
 										public void actionPerformed(
 												ActionEvent evt) {
-											/*
-											 * ModificarAbonos m = new
-											 * ModificarAbonos(sistema);
-											 * m.setVisible(true);
-											 */
+											
+											 ModificarAbonos m = new
+											 ModificarAbonos(sistema);
+											 m.setVisible(true);
+											
 										}
 									});
 						}
@@ -309,7 +305,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 				}
 			}
 			pack();
-			setSize(400, 300);
+			setSize(400, 100);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
