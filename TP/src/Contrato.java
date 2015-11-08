@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Date;
 
 public abstract class Contrato {
@@ -8,7 +9,7 @@ public abstract class Contrato {
 	protected Cochera cochera;
 	protected int numeroContrato;
 	protected String tipo;
-	protected Date fechaContrato;
+	protected Calendar fechaContrato;
 	
 	public Contrato(Cliente cliente, Abono abono, Auto auto, Cochera cochera, int numContrato) {
 		this.cliente = cliente;
@@ -17,7 +18,7 @@ public abstract class Contrato {
 		this.cochera = cochera;
 		this.numeroContrato = numContrato;
 		this.tipo = tipo;
-		this.fechaContrato = new Date();
+		this.fechaContrato = Calendar.getInstance();
 	}
 	
 	private String getTipo() {
@@ -52,6 +53,14 @@ public abstract class Contrato {
 	public void setNumeroContrato(int numeroContrato) {
 		this.numeroContrato = numeroContrato;
 	}
-	
 
+	public Calendar getFechaContrato() {
+		return fechaContrato;
+	}
+
+	public void setFechaContrato(Calendar fechaContrato) {
+		this.fechaContrato = fechaContrato;
+	}
+	
+	
 }

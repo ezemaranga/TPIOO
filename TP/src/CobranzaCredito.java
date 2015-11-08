@@ -1,10 +1,11 @@
+import java.util.Calendar;
 import java.util.Date;
 
 public final class CobranzaCredito extends Cobranza {
 
 	String entidad;
 	
-	public CobranzaCredito(Contrato contrato, Date fechaPago, double monto) {
+	public CobranzaCredito(Contrato contrato, Calendar fechaPago, double monto) {
 		super(contrato, fechaPago, monto);
 		this.entidad = entidad;
 	}

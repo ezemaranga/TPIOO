@@ -1,12 +1,13 @@
+import java.util.Calendar;
 import java.util.Date;
 
 public abstract class Cobranza {
 	
 	protected Contrato contrato;
-	protected Date fechaPago;
+	protected Calendar fechaPago;
 	protected double monto;
 	
-	public Cobranza(Contrato contrato, Date fechaPago, double monto) {
+	public Cobranza(Contrato contrato, Calendar fechaPago, double monto) {
 		super();
 		this.contrato = contrato;
 		this.fechaPago = fechaPago;
@@ -21,11 +22,11 @@ public abstract class Cobranza {
 		this.contrato = contrato;
 	}
 
-	protected Date getFechaPago() {
+	protected Calendar getFechaPago() {
 		return fechaPago;
 	}
 
-	protected void setFechaPago(Date fechaPago) {
+	protected void setFechaPago(Calendar fechaPago) {
 		this.fechaPago = fechaPago;
 	}
 

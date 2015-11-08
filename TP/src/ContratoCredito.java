@@ -4,14 +4,14 @@ public class ContratoCredito extends Contrato {
 	
 	String entidadEmisora;
 	String numTarjeta;
-	Date fechaVenc;
+	Date fechaVencTarj;
 	
-	public ContratoCredito(Cliente cliente, Abono abono, Auto auto, Cochera cochera, int numContrato, String entidadEmisora, String numTarjeta, Date fechaVenc){
+	public ContratoCredito(Cliente cliente, Abono abono, Auto auto, Cochera cochera, int numContrato, String entidadEmisora, String numTarjeta, Date fechaVencTarj){
 		super(cliente,abono,auto,cochera,numContrato);
 		this.tipo = "Credito";
 		this.entidadEmisora = entidadEmisora;
 		this.numTarjeta = numTarjeta;
-		this.fechaVenc = fechaVenc;
+		this.fechaVencTarj = fechaVencTarj;
 		
 	}
 	
@@ -21,8 +21,8 @@ public class ContratoCredito extends Contrato {
 	public void setNumTarjeta(String numTarjeta) {
 		this.numTarjeta = numTarjeta;
 	}
-	public void setFechaVenc(Date fechaVenc) {
-		this.fechaVenc = fechaVenc;
+	public void setFechaVencTarj(Date fechaVencTarj) {
+		this.fechaVencTarj = fechaVencTarj;
 	}
 
 	
