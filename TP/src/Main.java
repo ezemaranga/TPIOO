@@ -1,4 +1,6 @@
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 public class Main {
@@ -25,14 +27,32 @@ public class Main {
 //		
 		testeoCrearContrato(sistema);
 		
-		sistema.cobrarEfectivo(1, 3);
+		testeoCobranzas(sistema);
+		
 		
 	}
 
 	private static void testeoCrearContrato(SistemaCocheras sistema) {
 		sistema.crearContratoEfectivo("1", sistema.getAbonos().get(2), "ABC123");
+		sistema.crearContratoCheque("1", sistema.getAbonos().get(2), "ABC123");
+		sistema.crearContratoCredito("1", sistema.getAbonos().get(2), "ABC123", "Banco1", "123456", new Date());
+		sistema.crearContratoCBU("1", sistema.getAbonos().get(2), "ABC123", "Banco1", "123456");
 		System.out.println("----------CONTRATOS GENERADOS--------------");
 		sistema.imprimitContratos();
+	}
+	
+	private static void testeoCobranzas(SistemaCocheras sistema){
+		//Setear la fecha con 10 días más y x meses menos
+		sistema.getContratos().get(2).setFechaContrato(new GregorianCalendar(2015,7,18));
+		sistema.getContratos().get(3).setFechaContrato(new GregorianCalendar(2015,9,18));
+		
+		sistema.cobrarEfectivo(1, 300);
+		sistema.cobrarCheque(1, 500, "Banco", "CH12345");
+		sistema.cobrarCreditoBatch();
+		sistema.cobrarCbuBatch();
+		
+		System.out.println("------COBRANZAS REALIZADAS--------");
+		sistema.imprimirCobranzas();
 	}
 
 	private static void testeoBuscarCliente(SistemaCocheras sistema) {

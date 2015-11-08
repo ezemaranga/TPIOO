@@ -331,7 +331,7 @@ public class SistemaCocheras {
 		Contrato cont = buscarContrato(numeroContrato);
 		//Creo la cobranza
 		if(cont != null){
-			Cobranza cobranza = new CobranzaEfectivo(cont, new Date(), monto);
+			Cobranza cobranza = new CobranzaEfectivo(cont, Calendar.getInstance(), monto);
 			cobranzas.add(cobranza);
 			return true;
 		}
@@ -343,40 +343,95 @@ public class SistemaCocheras {
 		Contrato cont = buscarContrato(numeroContrato);
 		//Creo la cobranza
 		if(cont != null){
-			Cobranza cobranza = new CobranzaCheque(cont, new Date(), monto, entidadEmisora, numCheque);
+			Cobranza cobranza = new CobranzaCheque(cont, Calendar.getInstance(), monto, entidadEmisora, numCheque);
 			cobranzas.add(cobranza);
 			return true;
 		}
 		return false;
 	}
 	
-	public List<Contrato> cobrarCreditoBatch(int numeroContrato, double monto){
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, +10);
-		Calendar venc = Calendar.getInstance();
-		//cal.getTime();
-		Date fechaVenc = new Date();
-		List<Contrato> aCobrar = null;
+	public List<Contrato> cobrarCreditoBatch(){
+		List<Contrato> aCobrar = new ArrayList<Contrato>();
+		Calendar fecVenc = Calendar.getInstance();
+		fecVenc.add(Calendar.DATE, +10);
 		for(Contrato c : contratos){
 			if (c.tipo == "Credito"){
-				if (c.abono.getDescripcion() == "quincenal" ){
-					//ALGO
-				}else{
-					//ALGO
+				int diaCont = c.getFechaContrato().get(Calendar.DAY_OF_MONTH);
+				int diaContQuinc = diaCont + 15;
+				int diaVenc = fecVenc.get(Calendar.DAY_OF_MONTH);
+				boolean agregar = false;
+				if (c.abono.getDescripcion() == "mensual" && diaCont == diaVenc ){
+					agregar = true;
 				}
-				if (fechaVenc == cal.getTime()){
-					aCobrar.add(c);
-				}	
+				else if (c.abono.getDescripcion() == "quincenal" && (diaCont == diaVenc || diaContQuinc == diaVenc) ){
+					agregar = true;
+				}
+				if (agregar){
+					List<Cobranza> cobranzasCont = new ArrayList<Cobranza>();
+					cobranzasCont = buscarCobranzasContrato(c.getNumeroContrato());
+					for(Cobranza i : cobranzasCont){
+						if (i.getFechaPago() == fecVenc){
+							agregar = false;
+						}
+					}
+					if (agregar){
+						aCobrar.add(c);
+					}
+				}
 			}
 		}
-		
-				
+		for (Contrato j : aCobrar){
+			Cobranza cobranza = new CobranzaCredito(buscarContrato(j.numeroContrato), fecVenc, 0);
+			cobranzas.add(cobranza);
+		}
 		return aCobrar;
 	}
 	
-	public boolean cobrarCbu(int numeroContrato, double monto){
-		//HAY QUE AUTOMATIZAR ESTO!
-		return false;
+	public List<Contrato> cobrarCbuBatch(){
+		List<Contrato> aCobrar = new ArrayList<Contrato>();
+		Calendar fecVenc = Calendar.getInstance();
+		fecVenc.add(Calendar.DATE, +10);
+		for(Contrato c : contratos){
+			if (c.tipo == "CBU"){
+				int diaCont = c.getFechaContrato().get(Calendar.DAY_OF_MONTH);
+				int diaContQuinc = diaCont + 15;
+				int diaVenc = fecVenc.get(Calendar.DAY_OF_MONTH);
+				boolean agregar = false;
+				if (c.abono.getDescripcion() == "mensual" && diaCont == diaVenc ){
+					agregar = true;
+				}
+				else if (c.abono.getDescripcion() == "quincenal" && (diaCont == diaVenc || diaContQuinc == diaVenc) ){
+					agregar = true;
+				}
+				if (agregar){
+					List<Cobranza> cobranzasCont = new ArrayList<Cobranza>();
+					cobranzasCont = buscarCobranzasContrato(c.getNumeroContrato());
+					for(Cobranza i : cobranzasCont){
+						if (i.getFechaPago() == fecVenc){
+							agregar = false;
+						}
+					}
+					if (agregar){
+						aCobrar.add(c);
+					}
+				}
+			}
+		}
+		for (Contrato j : aCobrar){
+			Cobranza cobranza = new CobranzaCbu(buscarContrato(j.numeroContrato), fecVenc, 0);
+			cobranzas.add(cobranza);
+		}
+		return aCobrar;
+	}
+	
+	public List<Cobranza> buscarCobranzasContrato (int numeroContrato){
+		List<Cobranza> cobranzasCont = new ArrayList<Cobranza>();
+		for(Cobranza c : cobranzas){
+			if (c.contrato.getNumeroContrato() == numeroContrato){
+				cobranzasCont.add(c);
+			}
+		}
+		return cobranzasCont;
 	}
 	
 	//Impresiones
@@ -400,9 +455,15 @@ public class SistemaCocheras {
 	
 	public void imprimitContratos() {
 		for(Contrato contrato : contratos) {
-			System.out.println(contrato.getNumeroContrato() + " abono: " + contrato.getAbono().getDescripcion() +
-							  " cliente: " + contrato.getCliente().getNombre() + " cochera: " + contrato.getCochera().getNumero());
+			System.out.println("#Contrato: " + contrato.getNumeroContrato() + "; abono: " + contrato.getAbono().getDescripcion() +
+							  "; cliente: " + contrato.getCliente().getNombre() + "; cochera: " + contrato.getCochera().getNumero());
 		}
 	}
 
+	public void imprimirCobranzas() {
+		for(Cobranza cobranza : cobranzas) {
+			System.out.println("Contrato: " + cobranza.getContrato().getNumeroContrato() + "; Fecha de pago: " + cobranza.getFechaPago().getTime()
+								+ "; Monto Cobrado: $" + cobranza.getMonto());
+		}
+	}
 }

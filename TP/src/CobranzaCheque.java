@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Date;
 
 public final class CobranzaCheque extends Cobranza {
@@ -5,7 +6,7 @@ public final class CobranzaCheque extends Cobranza {
 	String entidadEmisora;
 	String nroCheque;
 	
-	public CobranzaCheque(Contrato contrato, Date fechaPago, double monto,String entidadEmisora, String nroCheque) {
+	public CobranzaCheque(Contrato contrato, Calendar fechaPago, double monto,String entidadEmisora, String nroCheque) {
 		super(contrato, fechaPago, monto);
 		this.entidadEmisora = entidadEmisora;
 		this.nroCheque = nroCheque;
