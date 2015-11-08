@@ -18,6 +18,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JMenuItem jMenuItemAltaClientes;
 	private JMenuItem jMenuItemBajaClientes;
 	private JMenuItem jMenuItemModificacionClientes;
+	private JMenu jMenuCocheras;
+	private JMenuItem jMenuItemAltaCocheras;
+	private JMenuItem jMenuItemBajaCocheras;
+	private JMenuItem jMenuItemBuscarCocheras;
+	private JMenuItem jMenuItemModificacionCocheras;
 	private JMenu jMenuAbonos;
 	private JMenuItem jMenuItemAltaAbonos;
 	private JMenuItem jMenuItemBajaAbonos;
@@ -100,7 +105,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 					{
 						jMenuItemModificacionClientes = new JMenuItem();
 						jMenuClientes.add(jMenuItemModificacionClientes);
-						jMenuItemModificacionClientes.setText("Modificación");
+						jMenuItemModificacionClientes.setText("Modificacion");
 						jMenuItemModificacionClientes
 								.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent evt) {
@@ -109,6 +114,58 @@ public class MenuPrincipal extends javax.swing.JFrame {
 										 * ModificacionCliente(sistema);
 										 * m.setVisible(true);
 										 */
+									}
+								});
+					}
+				}
+				{
+					jMenuCocheras = new JMenu();
+					jMenuBarSistema.add(jMenuCocheras);
+					jMenuCocheras.setText("Cocheras");
+					jMenuCocheras.setPreferredSize(new java.awt.Dimension(80,
+							30));
+					jMenuCocheras.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+
+						}
+					});
+					{
+						jMenuItemAltaCocheras = new JMenuItem();
+						jMenuCocheras.add(jMenuItemAltaCocheras);
+						jMenuItemAltaCocheras.setText("Alta");
+						jMenuItemAltaCocheras
+								.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent evt) {
+										  AltaCocheras a = new AltaCocheras(sistema);
+										  a.setVisible(true);
+
+									}
+								});
+					}
+					{
+						jMenuItemBajaCocheras = new JMenuItem();
+						jMenuCocheras.add(jMenuItemBajaCocheras);
+						jMenuItemBajaCocheras.setText("Baja");
+						jMenuItemBajaCocheras
+								.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent evt) {
+										 BajaCocheras m = new BajaCocheras(sistema);
+										 m.setVisible(true);
+										 
+									}
+								});
+					}
+					{
+						jMenuItemModificacionCocheras = new JMenuItem();
+						jMenuCocheras.add(jMenuItemModificacionCocheras);
+						jMenuItemModificacionCocheras.setText("Modificación");
+						jMenuItemModificacionCocheras
+								.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent evt) {
+										
+										  ModificarCocheras m = new ModificarCocheras(sistema);
+										  m.setVisible(true);
+										 
 									}
 								});
 					}
