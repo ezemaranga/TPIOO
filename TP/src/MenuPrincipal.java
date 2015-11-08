@@ -34,6 +34,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JMenu jMenuMedioDePago;
 	private JMenuItem jMenuItemAltaMdPago;
 	private JMenuItem jMenuItemBajaMdPago;
+	private JMenu jMenuCobranzas;
+	private JMenuItem jMenuItemNuevaCobranza;
+	private JMenuItem jMenuItemProcesosBatch;
 	private JMenu jMenuSalir;
 
 	private SistemaCocheras sistema;
@@ -58,14 +61,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 			{
 				jMenuBarSistema = new JMenuBar();
 				setJMenuBar(jMenuBarSistema);
-				jMenuBarSistema
-						.setPreferredSize(new java.awt.Dimension(392, 22));
+				jMenuBarSistema.setPreferredSize(new java.awt.Dimension(200, 25));
 				{
 					jMenuClientes = new JMenu();
 					jMenuBarSistema.add(jMenuClientes);
 					jMenuClientes.setText("Clientes");
-					jMenuClientes.setPreferredSize(new java.awt.Dimension(56,
-							21));
+					jMenuClientes.setPreferredSize(new java.awt.Dimension(80,22));
 					jMenuClientes.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -75,55 +76,50 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuItemAltaClientes = new JMenuItem();
 						jMenuClientes.add(jMenuItemAltaClientes);
 						jMenuItemAltaClientes.setText("Alta");
-						jMenuItemAltaClientes
-								.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent evt) {
-										/*
-										 * AltaCliente a = new
-										 * AltaCliente(sistema);
-										 * a.setVisible(true);
-										 */
-
-									}
-								});
+						jMenuItemAltaClientes.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								/*
+								 * AltaCliente a = new
+								 * AltaCliente(sistema);
+								 * a.setVisible(true);
+								 */
+							}
+						});
 					}
 					{
 						jMenuItemBajaClientes = new JMenuItem();
 						jMenuClientes.add(jMenuItemBajaClientes);
 						jMenuItemBajaClientes.setText("Baja");
-						jMenuItemBajaClientes
-								.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent evt) {
-										/*
-										 * BajaCliente m = new
-										 * BajaCliente(sistema);
-										 * m.setVisible(true);
-										 */
-									}
-								});
+						jMenuItemBajaClientes.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								/*
+								 * BajaCliente m = new
+								 * BajaCliente(sistema);
+								 * m.setVisible(true);
+								 */
+							}
+						});
 					}
 					{
 						jMenuItemModificacionClientes = new JMenuItem();
 						jMenuClientes.add(jMenuItemModificacionClientes);
 						jMenuItemModificacionClientes.setText("Modificacion");
-						jMenuItemModificacionClientes
-								.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent evt) {
-										/*
-										 * ModificacionCliente m = new
-										 * ModificacionCliente(sistema);
-										 * m.setVisible(true);
-										 */
-									}
-								});
+						jMenuItemModificacionClientes.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								/*
+								 * ModificacionCliente m = new
+								 * ModificacionCliente(sistema);
+								 * m.setVisible(true);
+								 */
+							}
+						});
 					}
 				}
 				{
 					jMenuCocheras = new JMenu();
 					jMenuBarSistema.add(jMenuCocheras);
 					jMenuCocheras.setText("Cocheras");
-					jMenuCocheras.setPreferredSize(new java.awt.Dimension(80,
-							30));
+					jMenuCocheras.setPreferredSize(new java.awt.Dimension(80,22));
 					jMenuCocheras.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -133,41 +129,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuItemAltaCocheras = new JMenuItem();
 						jMenuCocheras.add(jMenuItemAltaCocheras);
 						jMenuItemAltaCocheras.setText("Alta");
-						jMenuItemAltaCocheras
-								.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent evt) {
-										  AltaCocheras a = new AltaCocheras(sistema);
-										  a.setVisible(true);
-
-									}
-								});
+						jMenuItemAltaCocheras.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								  AltaCocheras a = new AltaCocheras(sistema);
+								  a.setVisible(true);
+	
+							}
+						});
 					}
 					{
 						jMenuItemBajaCocheras = new JMenuItem();
 						jMenuCocheras.add(jMenuItemBajaCocheras);
 						jMenuItemBajaCocheras.setText("Baja");
-						jMenuItemBajaCocheras
-								.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent evt) {
-										 BajaCocheras m = new BajaCocheras(sistema);
-										 m.setVisible(true);
-										 
-									}
-								});
+						jMenuItemBajaCocheras.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								 BajaCocheras m = new BajaCocheras(sistema);
+								 m.setVisible(true);
+								 
+							}
+						});
 					}
 					{
 						jMenuItemModificacionCocheras = new JMenuItem();
 						jMenuCocheras.add(jMenuItemModificacionCocheras);
 						jMenuItemModificacionCocheras.setText("Modificación");
-						jMenuItemModificacionCocheras
-								.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent evt) {
-										
-										  ModificarCocheras m = new ModificarCocheras(sistema);
-										  m.setVisible(true);
-										 
-									}
-								});
+						jMenuItemModificacionCocheras.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								
+								  ModificarCocheras m = new ModificarCocheras(sistema);
+								  m.setVisible(true);
+								 
+							}
+						});
 					}
 				}
 				{
@@ -175,8 +168,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuAbonos = new JMenu();
 						jMenuBarSistema.add(jMenuAbonos);
 						jMenuAbonos.setText("Abonos");
-						jMenuAbonos.setPreferredSize(new java.awt.Dimension(56,
-								21));
+						jMenuAbonos.setPreferredSize(new java.awt.Dimension(80,22));
 						jMenuAbonos.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 
@@ -186,46 +178,40 @@ public class MenuPrincipal extends javax.swing.JFrame {
 							jMenuItemAltaAbonos = new JMenuItem();
 							jMenuAbonos.add(jMenuItemAltaAbonos);
 							jMenuItemAltaAbonos.setText("Alta");
-							jMenuItemAltaAbonos
-									.addActionListener(new ActionListener() {
-										public void actionPerformed(
-												ActionEvent evt) {
-											AltaAbono a = new AltaAbono(sistema);
-											a.setVisible(true);
-										}
-									});
+							jMenuItemAltaAbonos.addActionListener(new ActionListener() {
+								public void actionPerformed(
+										ActionEvent evt) {
+									AltaAbono a = new AltaAbono(sistema);
+									a.setVisible(true);
+								}
+							});
 						}
 						{
 							jMenuItemBajaAbonos = new JMenuItem();
 							jMenuAbonos.add(jMenuItemBajaAbonos);
 							jMenuItemBajaAbonos.setText("Baja");
-							jMenuItemBajaAbonos
-									.addActionListener(new ActionListener() {
-										public void actionPerformed(
-												ActionEvent evt) {
+							jMenuItemBajaAbonos.addActionListener(new ActionListener() {
+								public void actionPerformed(
+										ActionEvent evt) {
 
-											BajaAbonos m = new BajaAbonos(
-													sistema);
-											m.setVisible(true);
+									BajaAbonos m = new BajaAbonos(
+											sistema);
+									m.setVisible(true);
 
-										}
-									});
+								}
+							});
 						}
 						{
 							jMenuItemModificacionAbonos = new JMenuItem();
 							jMenuAbonos.add(jMenuItemModificacionAbonos);
 							jMenuItemModificacionAbonos.setText("Modificacion");
-							jMenuItemModificacionAbonos
-									.addActionListener(new ActionListener() {
-										public void actionPerformed(
-												ActionEvent evt) {
-											
-											 ModificarAbonos m = new
-											 ModificarAbonos(sistema);
-											 m.setVisible(true);
-											
-										}
-									});
+							jMenuItemModificacionAbonos.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent evt) {
+									 ModificarAbonos m = new
+									 ModificarAbonos(sistema);
+									 m.setVisible(true);
+								}
+							});
 						}
 					}
 				}
@@ -234,62 +220,55 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuContratos = new JMenu();
 						jMenuBarSistema.add(jMenuContratos);
 						jMenuContratos.setText("Contratos");
-						jMenuContratos.setPreferredSize(new java.awt.Dimension(
-								56, 21));
+						jMenuContratos.setPreferredSize(new java.awt.Dimension(80,22));
 						jMenuContratos.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-
+								
 							}
 						});
 						{
 							jMenuItemAltaContratos = new JMenuItem();
 							jMenuContratos.add(jMenuItemAltaContratos);
 							jMenuItemAltaContratos.setText("Alta");
-							jMenuItemAltaContratos
-									.addActionListener(new ActionListener() {
-										public void actionPerformed(
-												ActionEvent evt) {
-											/*
-											 * AltaContratos a = new
-											 * AltaContratos(sistema);
-											 * a.setVisible(true);
-											 */
+							jMenuItemAltaContratos.addActionListener(new ActionListener() {
+								public void actionPerformed(
+										ActionEvent evt) {
+									/*
+									 * AltaContratos a = new
+									 * AltaContratos(sistema);
+									 * a.setVisible(true);
+									 */
 
-										}
-									});
+								}
+							});
 						}
 						{
 							jMenuItemBajaContratos = new JMenuItem();
 							jMenuContratos.add(jMenuItemBajaContratos);
 							jMenuItemBajaContratos.setText("Baja");
-							jMenuItemBajaContratos
-									.addActionListener(new ActionListener() {
-										public void actionPerformed(
-												ActionEvent evt) {
-											/*
-											 * BajaContrato m = new
-											 * BajaContrato(sistema);
-											 * m.setVisible(true);
-											 */
-										}
-									});
+							jMenuItemBajaContratos.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent evt) {
+									/*
+									 * BajaContrato m = new
+									 * BajaContrato(sistema);
+									 * m.setVisible(true);
+									 */
+								}
+							});
 						}
 						{
 							jMenuItemModificacionContratos = new JMenuItem();
 							jMenuContratos.add(jMenuItemModificacionContratos);
-							jMenuItemModificacionContratos
-									.setText("Modificacion");
-							jMenuItemModificacionContratos
-									.addActionListener(new ActionListener() {
-										public void actionPerformed(
-												ActionEvent evt) {
-											/*
-											 * ModificarContratos m = new
-											 * ModificarContratos(sistema);
-											 * m.setVisible(true);
-											 */
-										}
-									});
+							jMenuItemModificacionContratos.setText("Modificacion");
+							jMenuItemModificacionContratos.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent evt) {
+									/*
+									 * ModificarContratos m = new
+									 * ModificarContratos(sistema);
+									 * m.setVisible(true);
+									 */
+								}
+							});
 						}
 					}
 				}
@@ -297,48 +276,73 @@ public class MenuPrincipal extends javax.swing.JFrame {
 					{
 						jMenuMedioDePago = new JMenu();
 						jMenuBarSistema.add(jMenuMedioDePago);
-						jMenuMedioDePago.setText("Medios de Pago");
-						jMenuMedioDePago
-								.setPreferredSize(new java.awt.Dimension(105,
-										21));
-						jMenuMedioDePago
-								.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent evt) {
+						jMenuMedioDePago.setText("M. de Pago");
+						jMenuMedioDePago.setPreferredSize(new java.awt.Dimension(80,22));
+						jMenuMedioDePago.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
 
-									}
-								});
+							}
+						});
 						{
 							jMenuItemAltaMdPago = new JMenuItem();
 							jMenuMedioDePago.add(jMenuItemAltaMdPago);
 							jMenuItemAltaMdPago.setText("Alta");
-							jMenuItemAltaMdPago
-									.addActionListener(new ActionListener() {
-										public void actionPerformed(
-												ActionEvent evt) {
-											/*
-											 * AltaMedioDePago a = new
-											 * jMenuItemAltaMdPago(sistema);
-											 * a.setVisible(true);
-											 */
-
-										}
-									});
+							jMenuItemAltaMdPago.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+									/*
+									 * AltaMedioDePago a = new
+									 * jMenuItemAltaMdPago(sistema);
+									 * a.setVisible(true);
+									 */
+								}
+							});
 						}
 						{
 							jMenuItemBajaMdPago = new JMenuItem();
 							jMenuMedioDePago.add(jMenuItemBajaMdPago);
 							jMenuItemBajaMdPago.setText("Modificacion");
-							jMenuItemBajaMdPago
-									.addActionListener(new ActionListener() {
-										public void actionPerformed(
-												ActionEvent evt) {
-											/*
-											 * BajaMedioDePago m = new
-											 * BajaMedioDePago(sistema);
-											 * m.setVisible(true);
-											 */
-										}
-									});
+							jMenuItemBajaMdPago.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent evt) {
+									/*
+									 * BajaMedioDePago m = new
+									 * BajaMedioDePago(sistema);
+									 * m.setVisible(true);
+									 */
+								}
+							});
+						}
+					}
+					{
+						jMenuCobranzas = new JMenu();
+						jMenuBarSistema.add(jMenuCobranzas);
+						jMenuCobranzas.setText("Cobranzas");
+						jMenuCobranzas.setPreferredSize(new java.awt.Dimension(80,22));
+						jMenuMedioDePago.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+
+							}
+						});
+						{
+							jMenuItemNuevaCobranza = new JMenuItem();
+							jMenuCobranzas.add(jMenuItemNuevaCobranza);
+							jMenuItemNuevaCobranza.setText("Nueva Cobranza");
+							jMenuItemNuevaCobranza.addActionListener(new ActionListener(){
+								public void actionPerformed(ActionEvent evt){
+									AltaCobranzas a = new
+									AltaCobranzas(sistema);
+									a.setVisible(true);
+								}
+							});
+						}
+						{
+							jMenuItemProcesosBatch = new JMenuItem();
+							jMenuCobranzas.add(jMenuItemProcesosBatch);
+							jMenuItemProcesosBatch.setText("Procesos Batch");
+							jMenuItemProcesosBatch.addActionListener(new ActionListener(){
+								public void actionPerformed(ActionEvent evt){
+								
+								}
+							});
 						}
 					}
 					{
@@ -362,10 +366,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 				}
 			}
 			pack();
-			setSize(400, 100);
+			setSize(650, 350);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }
