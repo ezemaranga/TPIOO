@@ -137,19 +137,23 @@ public class SistemaCocheras {
 	}
 
 	//ABM de Cocheras
-	public void crearCochera(int numero, String tamanio) {
-		Cochera cochera = new Cochera(numero, tamanio);
-		//alguna validacion supongo
-		cocheras.add(cochera);
+	public boolean crearCochera(int numero, String tamanio) {
+		if(buscarCochera(numero) == null) {
+			Cochera cochera = new Cochera(numero, tamanio);
+			cocheras.add(cochera);
+			return true;
+		}
+		return false;
 	}
 	
-	public void eliminarCochera(int numero) {
+	public boolean eliminarCochera(int numero) {
 		for(Cochera cochera : cocheras) {
 			if(cochera.getNumero() == numero) {
 				cocheras.remove(cochera);
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public Cochera buscarCocheraDisponible(String tamanio) {
@@ -161,19 +165,33 @@ public class SistemaCocheras {
 		return null;
 	}
 	
-	public void cambiarEstadoCochera(int numero, boolean disponible) {
+	private Cochera buscarCochera(int numero) {
+		for(Cochera cochera : cocheras) {
+			if(cochera.getNumero() == numero) {
+				return cochera;
+			}
+		}
+		return null;
+	}
+	
+	public boolean cambiarEstadoCochera(int numero, boolean disponible) {
 		for (Cochera cochera : cocheras) {
 			if(cochera.getNumero() == numero) {
 				cochera.setDisponible(disponible);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	//ABM de Abonos
-	public void crearAbono(String descripcion, double precio, String tamanioCochera, int codigo) {
-		Abono abono = new Abono(descripcion, precio, tamanioCochera, codigo);
-		//alguna validacion supongo
-		abonos.add(abono);
+	public boolean crearAbono(String descripcion, double precio, String tamanioCochera, int codigo) {
+		if(buscarAbono(codigo) == null) {
+			Abono abono = new Abono(descripcion, precio, tamanioCochera, codigo);
+			abonos.add(abono);
+			return true;
+		}
+		return false;
 	}
 	
 	public void eliminarAbono(int codigo) {
@@ -191,6 +209,15 @@ public class SistemaCocheras {
 				abono.setPrecio(nuevoPrecio);
 			}
 		}
+	}
+	
+	public Abono buscarAbono(int codigo) {
+		for(Abono abono : abonos) {
+			if(abono.getCodigo() == codigo) {
+				return abono;
+			}
+		}
+		return null;
 	}
 	
 	//ABM de Contratos

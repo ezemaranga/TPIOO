@@ -24,6 +24,7 @@ public class BajaCocheras extends javax.swing.JFrame {
 	private JLabel jLabelNumero;
 	private JButton baja;
 	private JTextField Numero;
+	private JLabel jLabelResultado;
 	
 	
 	private SistemaCocheras sistema;
@@ -62,6 +63,12 @@ public class BajaCocheras extends javax.swing.JFrame {
 				Numero.setBounds(125, 42, 210, 28);
 			}
 			{
+				jLabelResultado= new JLabel();
+				getContentPane().add(jLabelResultado);
+				jLabelResultado.setText("");
+				jLabelResultado.setBounds(21, 151, 200, 28);
+			}
+			{
 				baja = new JButton();
 				getContentPane().add(baja);
 				baja.setText("Dar de baja");
@@ -70,8 +77,14 @@ public class BajaCocheras extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						sistema.eliminarCochera(Integer.parseUnsignedInt(Numero.getText()));
+						boolean resultado = sistema.eliminarCochera(Integer.parseInt(Numero.getText()));
 						Numero.setText("");
+						if(resultado) {
+							jLabelResultado.setText("cochera eliminada");
+						} else {
+							jLabelResultado.setText("no existe la cochera");
+						}
+						
 					}
 				});
 			}

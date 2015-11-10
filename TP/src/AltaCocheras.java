@@ -10,6 +10,7 @@ import javax.swing.WindowConstants;
 public class AltaCocheras extends javax.swing.JFrame {
 	private JLabel jLabelNumero;
 	private JLabel jLabelTamanio;
+	private JLabel jLabelResultado;
 	private JButton alta;
 	private JTextField Numero;
 	private JTextField Tamanio;
@@ -52,6 +53,12 @@ public class AltaCocheras extends javax.swing.JFrame {
 				jLabelTamanio.setBounds(21, 91, 103, 28);
 			}
 			{
+				jLabelResultado= new JLabel();
+				getContentPane().add(jLabelResultado);
+				jLabelResultado.setText("");
+				jLabelResultado.setBounds(21, 151, 200, 28);
+			}
+			{
 				Numero = new JTextField();
 				getContentPane().add(Numero);
 				Numero.setBounds(125, 42, 210, 28);
@@ -70,9 +77,15 @@ public class AltaCocheras extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						sistema.crearCochera(Integer.parseUnsignedInt(Numero.getText()), Tamanio.getText());
+						boolean resultado = sistema.crearCochera(Integer.parseInt(Numero.getText()), Tamanio.getText());
 						Numero.setText("");
 						Tamanio.setText("");
+						if(resultado) {
+							jLabelResultado.setText("cochera creada");
+						} else {
+							jLabelResultado.setText("numero de cochera ya existente");
+						}
+						
 					}
 				});
 			}

@@ -28,6 +28,7 @@ public class ModificarCocheras extends javax.swing.JFrame {
 	private JButton modificar;
 	private JTextField Numero;
 	private JTextField Estado;
+	private JLabel jLabelResultado;
 	
 	
 	private SistemaCocheras sistema;
@@ -77,6 +78,12 @@ public class ModificarCocheras extends javax.swing.JFrame {
 				Estado.setBounds(125, 91, 210, 28);
 			}
 			{
+				jLabelResultado= new JLabel();
+				getContentPane().add(jLabelResultado);
+				jLabelResultado.setText("");
+				jLabelResultado.setBounds(21, 151, 200, 28);
+			}
+			{
 				modificar = new JButton();
 				getContentPane().add(modificar);
 				modificar.setText("Modificar estado");
@@ -85,9 +92,14 @@ public class ModificarCocheras extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						sistema.cambiarEstadoCochera(Integer.parseUnsignedInt(Numero.getText()), Boolean.parseBoolean(Estado.getText()));
+						boolean resultado = sistema.cambiarEstadoCochera(Integer.parseInt(Numero.getText()), Boolean.parseBoolean(Estado.getText()));
 						Numero.setText("");
 						Estado.setText("");
+						if(resultado) {
+							jLabelResultado.setText("cochera modificada");
+						} else {
+							jLabelResultado.setText("cochera inexistente");
+						}
 					}
 				});
 			}
