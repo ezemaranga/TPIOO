@@ -6,9 +6,10 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 public class AltaCobranzasBatch extends javax.swing.JFrame {
@@ -18,6 +19,7 @@ public class AltaCobranzasBatch extends javax.swing.JFrame {
 	private JLabel jLabelCobranzaCbu;
 	private JButton jButtonBatchCbu;
 	private JTextArea JTextAreaListCobranzasCbu;
+	private JSeparator JSeparatorVertical;
 	
 	private SistemaCocheras sistema;
 
@@ -119,7 +121,12 @@ public class AltaCobranzasBatch extends javax.swing.JFrame {
 				getContentPane().add(JTextAreaListCobranzasCbu);
 				JTextAreaListCobranzasCbu.setText("-->");
 				JTextAreaListCobranzasCbu.setBounds(320, 100, 250, 200);
-			}	
+			}
+			{
+				JSeparatorVertical = new JSeparator(SwingConstants.VERTICAL);
+				getContentPane().add(JSeparatorVertical);
+				JSeparatorVertical.setBounds(295, 25, 1, 280);
+			}
 			pack();
 			setSize(650, 350);
 		} catch (Exception e) {
