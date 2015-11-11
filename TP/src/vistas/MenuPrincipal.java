@@ -229,11 +229,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 							jMenuItemAltaContratos.addActionListener(new ActionListener() {
 								public void actionPerformed(
 										ActionEvent evt) {
-									/*
-									 * AltaContratos a = new
-									 * AltaContratos(sistema);
-									 * a.setVisible(true);
-									 */
+									
+									 AltaContrato a = new
+									 AltaContrato(sistema);
+									 a.setVisible(true);
+									 
 
 								}
 							});
