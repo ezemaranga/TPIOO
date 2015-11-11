@@ -30,6 +30,7 @@ public class AltaAbono extends javax.swing.JFrame {
 	private JTextField descripcion;
 	private JTextField precio;
 	private JTextField tamanio;
+	private JLabel jLabelResultado;
 	
 	private SistemaCocheras sistema;
 
@@ -68,6 +69,12 @@ public class AltaAbono extends javax.swing.JFrame {
 				jLabelDescripcion.setBounds(21, 91, 103, 28);
 			}
 			{
+				jLabelResultado= new JLabel();
+				getContentPane().add(jLabelResultado);
+				jLabelResultado.setText("");
+				jLabelResultado.setBounds(21, 250, 200, 28);
+			}
+			{
 				jLabelPrecio = new JLabel();
 				getContentPane().add(jLabelPrecio);
 				jLabelPrecio.setText("Precio:");
@@ -76,7 +83,7 @@ public class AltaAbono extends javax.swing.JFrame {
 			{
 				jLabelTamanioCochera = new JLabel();
 				getContentPane().add(jLabelTamanioCochera);
-				jLabelTamanioCochera.setText("Tamaño Cochera:");
+				jLabelTamanioCochera.setText("TamaÃ±o Cochera:");
 				jLabelTamanioCochera.setBounds(21, 203, 103, 28);
 			}
 			{
@@ -108,11 +115,17 @@ public class AltaAbono extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						sistema.crearAbono(descripcion.getText(), Double.parseDouble(precio.getText()), tamanio.getText(), Integer.parseInt(codigo.getText()));
+						boolean resultado = sistema.crearAbono(descripcion.getText(), Double.parseDouble(precio.getText()), tamanio.getText(), Integer.parseInt(codigo.getText()));
 						codigo.setText("");
 						precio.setText("");
 						tamanio.setText("");
 						descripcion.setText("");
+						if(resultado) {
+							jLabelResultado.setText("abono creado");
+						} else {
+							jLabelResultado.setText("codigo de abono existente");
+						}
+						
 					}
 				});
 			}

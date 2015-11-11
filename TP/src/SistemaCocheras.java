@@ -194,21 +194,24 @@ public class SistemaCocheras {
 		return false;
 	}
 	
-	public void eliminarAbono(int codigo) {
+	public boolean eliminarAbono(int codigo) {
 		for(Abono abono : abonos) {
 			if(abono.getCodigo() == codigo) {
 				abonos.remove(abono);
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 	
-	public void modificarPrecioAbono(int codigo, int nuevoPrecio) {
+	public boolean modificarPrecioAbono(int codigo, int nuevoPrecio) {
 		for(Abono abono : abonos) {
 			if(abono.getCodigo() == codigo) {
 				abono.setPrecio(nuevoPrecio);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public Abono buscarAbono(int codigo) {

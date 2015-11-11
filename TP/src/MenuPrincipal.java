@@ -78,11 +78,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuItemAltaClientes.setText("Alta");
 						jMenuItemAltaClientes.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-								/*
-								 * AltaCliente a = new
-								 * AltaCliente(sistema);
-								 * a.setVisible(true);
-								 */
+								
+								  AltaCliente a = new AltaCliente(sistema);
+								  a.setVisible(true);
+								 
 							}
 						});
 					}
@@ -92,11 +91,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuItemBajaClientes.setText("Baja");
 						jMenuItemBajaClientes.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-								/*
-								 * BajaCliente m = new
-								 * BajaCliente(sistema);
-								 * m.setVisible(true);
-								 */
+								
+								 BajaCliente m = new BajaCliente(sistema);
+								 m.setVisible(true);
+								 
 							}
 						});
 					}
@@ -106,11 +104,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuItemModificacionClientes.setText("Modificacion");
 						jMenuItemModificacionClientes.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-								/*
-								 * ModificacionCliente m = new
-								 * ModificacionCliente(sistema);
-								 * m.setVisible(true);
-								 */
+								
+								 ModificarCliente m = new ModificarCliente(sistema);
+								 m.setVisible(true);
+								 
 							}
 						});
 					}
@@ -152,7 +149,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 					{
 						jMenuItemModificacionCocheras = new JMenuItem();
 						jMenuCocheras.add(jMenuItemModificacionCocheras);
-						jMenuItemModificacionCocheras.setText("Modificación");
+						jMenuItemModificacionCocheras.setText("Modificacion");
 						jMenuItemModificacionCocheras.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								
@@ -194,8 +191,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 								public void actionPerformed(
 										ActionEvent evt) {
 
-									BajaAbonos m = new BajaAbonos(
-											sistema);
+									BajaAbonos m = new BajaAbonos(sistema);
 									m.setVisible(true);
 
 								}

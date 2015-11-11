@@ -24,6 +24,8 @@ public class BajaAbonos extends javax.swing.JFrame {
 	private JLabel jLabelCodigo;
 	private JButton baja;
 	private JTextField codigo;
+	private JLabel jLabelResultado;
+
 	
 	private SistemaCocheras sistema;
 
@@ -61,6 +63,12 @@ public class BajaAbonos extends javax.swing.JFrame {
 				codigo.setBounds(125, 42, 210, 28);
 			}
 			{
+				jLabelResultado= new JLabel();
+				getContentPane().add(jLabelResultado);
+				jLabelResultado.setText("");
+				jLabelResultado.setBounds(21, 92, 200, 28);
+			}
+			{
 				baja = new JButton();
 				getContentPane().add(baja);
 				baja.setText("Eliminar");
@@ -69,8 +77,13 @@ public class BajaAbonos extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						sistema.eliminarAbono(Integer.parseInt(codigo.getText()));
+						boolean resultado = sistema.eliminarAbono(Integer.parseInt(codigo.getText()));
 						codigo.setText("");
+						if(resultado) {
+							jLabelResultado.setText("abono eliminado");
+						} else {
+							jLabelResultado.setText("abono inexistente");
+						}
 					}
 				});
 			}

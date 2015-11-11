@@ -26,6 +26,8 @@ public class ModificarAbonos extends javax.swing.JFrame {
 	private JButton modificar;
 	private JTextField codigo;
 	private JTextField precio;
+	private JLabel jLabelResultado;
+
 	
 	private SistemaCocheras sistema;
 
@@ -74,6 +76,12 @@ public class ModificarAbonos extends javax.swing.JFrame {
 				precio.setBounds(125, 91, 210, 28);
 			}
 			{
+				jLabelResultado= new JLabel();
+				getContentPane().add(jLabelResultado);
+				jLabelResultado.setText("");
+				jLabelResultado.setBounds(21, 131, 200, 28);
+			}
+			{
 				modificar = new JButton();
 				getContentPane().add(modificar);
 				modificar.setText("Modificar");
@@ -82,9 +90,14 @@ public class ModificarAbonos extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						sistema.modificarPrecioAbono(Integer.parseInt(codigo.getText()),Integer.parseInt(precio.getText()));
+						boolean resultado = sistema.modificarPrecioAbono(Integer.parseInt(codigo.getText()),Integer.parseInt(precio.getText()));
 						codigo.setText("");
 						precio.setText("");
+						if(resultado) {
+							jLabelResultado.setText("cochera eliminada");
+						} else {
+							jLabelResultado.setText("no existe la cochera");
+						}
 					}
 				});
 			}

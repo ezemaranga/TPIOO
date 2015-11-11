@@ -80,9 +80,9 @@ public class BajaCocheras extends javax.swing.JFrame {
 						boolean resultado = sistema.eliminarCochera(Integer.parseInt(Numero.getText()));
 						Numero.setText("");
 						if(resultado) {
-							jLabelResultado.setText("cochera eliminada");
+							jLabelResultado.setText("abono modificado");
 						} else {
-							jLabelResultado.setText("no existe la cochera");
+							jLabelResultado.setText("no existe el abono");
 						}
 						
 					}
