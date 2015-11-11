@@ -42,9 +42,9 @@ public class Main {
 	}
 	
 	private static void testeoCobranzas(SistemaCocheras sistema){
-		//Setear la fecha con 10 días más y x meses menos
-		sistema.getContratos().get(2).setFechaContrato(new GregorianCalendar(2015,7,18));
-		sistema.getContratos().get(3).setFechaContrato(new GregorianCalendar(2015,9,18));
+		//Setear la fecha con 10 días más y x meses menos que la fecha de hoy
+		sistema.getContratos().get(2).setFechaContrato(new GregorianCalendar(2015,7,21));
+		sistema.getContratos().get(3).setFechaContrato(new GregorianCalendar(2015,9,21));
 		
 		sistema.cobrarEfectivo(1, 300);
 		sistema.cobrarCheque(1, 500, "Banco", "CH12345");
