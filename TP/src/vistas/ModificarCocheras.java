@@ -67,7 +67,7 @@ public class ModificarCocheras extends javax.swing.JFrame {
 			{
 				jLabelEstado= new JLabel();
 				getContentPane().add(jLabelEstado);
-				jLabelEstado.setText("Estado:");
+				jLabelEstado.setText("Ocupar cochera?:");
 				jLabelEstado.setBounds(21, 91, 103, 28);
 			}
 			{
@@ -103,6 +103,8 @@ public class ModificarCocheras extends javax.swing.JFrame {
 						} else {
 							jLabelResultado.setText("cochera inexistente");
 						}
+						System.out.println("-------COCHERAS----------");
+						sistema.imprimirCocheras();
 					}
 				});
 			}
