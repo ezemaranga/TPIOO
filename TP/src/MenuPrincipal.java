@@ -290,7 +290,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 							jMenuItemProcesosBatch.setText("Procesos Batch");
 							jMenuItemProcesosBatch.addActionListener(new ActionListener(){
 								public void actionPerformed(ActionEvent evt){
-								
+									AltaCobranzasBatch a = new
+									AltaCobranzasBatch(sistema);
+									a.setVisible(true);
 								}
 							});
 						}

@@ -380,8 +380,9 @@ public class SistemaCocheras {
 		return false;
 	}
 	
-	public List<Contrato> cobrarCreditoBatch(){
+	public List<Cobranza> cobrarCreditoBatch(){
 		List<Contrato> aCobrar = new ArrayList<Contrato>();
+		List<Cobranza> cobranzasGeneradas = new ArrayList<Cobranza>();
 		Calendar fecVenc = Calendar.getInstance();
 		fecVenc.add(Calendar.DATE, +10);
 		for(Contrato c : contratos){
@@ -413,12 +414,14 @@ public class SistemaCocheras {
 		for (Contrato j : aCobrar){
 			Cobranza cobranza = new CobranzaCredito(buscarContrato(j.numeroContrato), fecVenc, 0);
 			cobranzas.add(cobranza);
+			cobranzasGeneradas.add(cobranza);
 		}
-		return aCobrar;
+		return cobranzasGeneradas;
 	}
 	
-	public List<Contrato> cobrarCbuBatch(){
+	public List<Cobranza> cobrarCbuBatch(){
 		List<Contrato> aCobrar = new ArrayList<Contrato>();
+		List<Cobranza> cobranzasGeneradas = new ArrayList<Cobranza>();
 		Calendar fecVenc = Calendar.getInstance();
 		fecVenc.add(Calendar.DATE, +10);
 		for(Contrato c : contratos){
@@ -450,8 +453,9 @@ public class SistemaCocheras {
 		for (Contrato j : aCobrar){
 			Cobranza cobranza = new CobranzaCbu(buscarContrato(j.numeroContrato), fecVenc, 0);
 			cobranzas.add(cobranza);
+			cobranzasGeneradas.add(cobranza);
 		}
-		return aCobrar;
+		return cobranzasGeneradas;
 	}
 	
 	public List<Cobranza> buscarCobranzasContrato (int numeroContrato){
