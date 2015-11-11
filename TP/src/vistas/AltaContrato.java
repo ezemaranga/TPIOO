@@ -116,21 +116,21 @@ public class AltaContrato extends javax.swing.JFrame {
 				JLCbu = new JLabel();
 				getContentPane().add(JLCbu);
 				JLCbu.setText("CBU:");
-				JLCbu.setBounds(21, 360, 63, 28);
+				JLCbu.setBounds(21, 240, 63, 28);
 				JLCbu.setVisible(false);
 			}
 			{
 				JLNroTarjeta = new JLabel();
 				getContentPane().add(JLNroTarjeta);
 				JLNroTarjeta.setText("N° Tarjeta:");
-				JLNroTarjeta.setBounds(21, 360, 63, 28);
+				JLNroTarjeta.setBounds(21, 240, 63, 28);
 				JLNroTarjeta.setVisible(false);
 			}
 			{
 				JLFecVenc = new JLabel();
 				getContentPane().add(JLFecVenc);
 				JLFecVenc.setText("Fecha de Vencimiento:");
-				JLFecVenc.setBounds(21, 400, 63, 28);
+				JLFecVenc.setBounds(21, 280, 63, 28);
 				JLFecVenc.setVisible(false);
 			}
 
@@ -161,35 +161,35 @@ public class AltaContrato extends javax.swing.JFrame {
 							JTEntidad = new JTextField();
 							getContentPane().add(JTEntidad);
 							
-							JTEntidad.setBounds(119, 160, 210, 28);
+							JTEntidad.setBounds(119, 200, 210, 28);
 							JTEntidad.setVisible(false);
 						}
 						{
 							JTCbu = new JTextField();
 							getContentPane().add(JTCbu);
 							
-							JTCbu.setBounds(119, 200, 210, 28);
+							JTCbu.setBounds(119, 240, 210, 28);
 							JTCbu.setVisible(false);
 						}
 						{
 							JTNroTarjeta = new JTextField();
 							getContentPane().add(JTNroTarjeta);
 							
-							JTNroTarjeta.setBounds(119, 280, 210, 28);
+							JTNroTarjeta.setBounds(119, 240, 210, 28);
 							JTNroTarjeta.setVisible(false);
 						}
 						{
 							JTFecVenc = new JTextField();
 							getContentPane().add(JTFecVenc);
 							
-							JTFecVenc.setBounds(119, 320, 210, 28);
+							JTFecVenc.setBounds(119, 280, 210, 28);
 							JTFecVenc.setVisible(false);
 						}
 						{
 							JTTipo = new JComboBox(TipoContrato);
 							getContentPane().add(JTTipo);
 							
-							JTTipo.setBounds(119, 240, 210, 28);
+							JTTipo.setBounds(119, 160, 210, 28);
 							JTTipo.addActionListener(new ActionListener()
 							{
 								public void actionPerformed(ActionEvent evt) 
@@ -240,7 +240,7 @@ public class AltaContrato extends javax.swing.JFrame {
 				alta = new JButton();
 				getContentPane().add(alta);
 				alta.setText("Crear");
-				alta.setBounds(400, 430, 70, 28);
+				alta.setBounds(330, 330, 70, 28);
 				alta.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt) 
@@ -285,7 +285,7 @@ public class AltaContrato extends javax.swing.JFrame {
 				});
 			}
 			pack();
-			setSize(500, 500);				
+			setSize(450, 450);				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
