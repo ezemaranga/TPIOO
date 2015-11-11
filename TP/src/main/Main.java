@@ -1,6 +1,12 @@
+package main;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import codigo.Auto;
+import codigo.Cliente;
+import codigo.Cochera;
+import codigo.SistemaCocheras;
 
 
 public class Main {

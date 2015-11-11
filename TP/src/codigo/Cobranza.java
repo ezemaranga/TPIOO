@@ -1,3 +1,4 @@
+package codigo;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,27 +15,27 @@ public abstract class Cobranza {
 		this.monto = monto;
 	}
 
-	protected Contrato getContrato() {
+	public Contrato getContrato() {
 		return contrato;
 	}
 
-	protected void setContrato(Contrato contrato) {
+	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
 	}
 
-	protected Calendar getFechaPago() {
+	public Calendar getFechaPago() {
 		return fechaPago;
 	}
 
-	protected void setFechaPago(Calendar fechaPago) {
+	public void setFechaPago(Calendar fechaPago) {
 		this.fechaPago = fechaPago;
 	}
 
-	protected double getMonto() {
+	public double getMonto() {
 		return monto;
 	}
 
-	protected void setMonto(double monto) {
+	public void setMonto(double monto) {
 		this.monto = monto;
 	}
 

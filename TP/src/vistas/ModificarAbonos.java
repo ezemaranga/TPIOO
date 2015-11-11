@@ -1,11 +1,14 @@
+package vistas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import javax.swing.WindowConstants;
+
+import codigo.SistemaCocheras;
 
 
 /**
@@ -20,17 +23,14 @@ import javax.swing.WindowConstants;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class AltaAbono extends javax.swing.JFrame {
+public class ModificarAbonos extends javax.swing.JFrame {
 	private JLabel jLabelCodigo;
-	private JLabel jLabelDescripcion;
 	private JLabel jLabelPrecio;
-	private JLabel jLabelTamanioCochera;
-	private JButton alta;
+	private JButton modificar;
 	private JTextField codigo;
-	private JTextField descripcion;
 	private JTextField precio;
-	private JTextField tamanio;
 	private JLabel jLabelResultado;
+
 	
 	private SistemaCocheras sistema;
 
@@ -38,15 +38,15 @@ public class AltaAbono extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 	public static void main(String[] args) {
-		AltaAbono inst = new AltaAbono();
+		ModificarAbonos inst = new ModificarAbonos();
 		inst.setVisible(true);
 	}
 	
-	public AltaAbono ()
+	public ModificarAbonos ()
 	{
 		
 	}
-	public AltaAbono(SistemaCocheras s) {
+	public ModificarAbonos(SistemaCocheras s) {
 		super();
 		initGUI();
 		sistema = s;
@@ -63,28 +63,10 @@ public class AltaAbono extends javax.swing.JFrame {
 				jLabelCodigo.setBounds(21, 42, 103, 28);
 			}
 			{
-				jLabelDescripcion = new JLabel();
-				getContentPane().add(jLabelDescripcion);
-				jLabelDescripcion.setText("Descripcion:");
-				jLabelDescripcion.setBounds(21, 91, 103, 28);
-			}
-			{
-				jLabelResultado= new JLabel();
-				getContentPane().add(jLabelResultado);
-				jLabelResultado.setText("");
-				jLabelResultado.setBounds(21, 250, 200, 28);
-			}
-			{
 				jLabelPrecio = new JLabel();
 				getContentPane().add(jLabelPrecio);
 				jLabelPrecio.setText("Precio:");
-				jLabelPrecio.setBounds(21, 147, 103, 28);
-			}
-			{
-				jLabelTamanioCochera = new JLabel();
-				getContentPane().add(jLabelTamanioCochera);
-				jLabelTamanioCochera.setText("Tamaño Cochera:");
-				jLabelTamanioCochera.setBounds(21, 203, 103, 28);
+				jLabelPrecio.setBounds(21, 91, 103, 28);
 			}
 			{
 				codigo = new JTextField();
@@ -92,45 +74,38 @@ public class AltaAbono extends javax.swing.JFrame {
 				codigo.setBounds(125, 42, 210, 28);
 			}
 			{
-				descripcion = new JTextField();
-				getContentPane().add(descripcion);
-				descripcion.setBounds(125, 91, 210, 28);
-			}
-			{
 				precio = new JTextField();
 				getContentPane().add(precio);
-				precio.setBounds(125, 147, 210, 28);
+				precio.setBounds(125, 91, 210, 28);
 			}
 			{
-				tamanio = new JTextField();
-				getContentPane().add(tamanio);
-				tamanio.setBounds(125, 203, 210, 28);
+				jLabelResultado= new JLabel();
+				getContentPane().add(jLabelResultado);
+				jLabelResultado.setText("");
+				jLabelResultado.setBounds(21, 131, 200, 28);
 			}
 			{
-				alta = new JButton();
-				getContentPane().add(alta);
-				alta.setText("Crear");
-				alta.setBounds(238, 263, 73, 28);
-				alta.addActionListener(new ActionListener()
+				modificar = new JButton();
+				getContentPane().add(modificar);
+				modificar.setText("Modificar");
+				modificar.setBounds(238, 140, 93, 28);
+				modificar.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						boolean resultado = sistema.crearAbono(descripcion.getText(), Double.parseDouble(precio.getText()), tamanio.getText(), Integer.parseInt(codigo.getText()));
+						boolean resultado = sistema.modificarPrecioAbono(Integer.parseInt(codigo.getText()),Integer.parseInt(precio.getText()));
 						codigo.setText("");
 						precio.setText("");
-						tamanio.setText("");
-						descripcion.setText("");
 						if(resultado) {
-							jLabelResultado.setText("abono creado");
+							jLabelResultado.setText("cochera eliminada");
 						} else {
-							jLabelResultado.setText("codigo de abono existente");
+							jLabelResultado.setText("no existe la cochera");
 						}
-						
 					}
 				});
 			}
 			pack();
-			setSize(400, 350);
+			setSize(400, 225);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

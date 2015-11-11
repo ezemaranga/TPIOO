@@ -1,20 +1,23 @@
+package vistas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import javax.swing.WindowConstants;
 
-public class ModificarCliente extends javax.swing.JFrame {
+import codigo.SistemaCocheras;
+
+public class AltaCliente extends javax.swing.JFrame {
 	private JLabel jLabelDni;
 	private JLabel jLabelNombre;
 	private JLabel jLabelMail;
 	private JLabel jLabelTelefono;
 	private JLabel jLabelDomicilio;
 	private JLabel jLabelResultado;
-	private JButton modificar;
+	private JButton alta;
 	private JTextField dni;
 	private JTextField nombre;
 	private JTextField mail;
@@ -28,15 +31,15 @@ public class ModificarCliente extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 	public static void main(String[] args) {
-		ModificarCliente inst = new ModificarCliente();
+		AltaCliente inst = new AltaCliente();
 		inst.setVisible(true);
 	}
 	
-	public ModificarCliente ()
+	public AltaCliente ()
 	{
 		
 	}
-	public ModificarCliente(SistemaCocheras s) {
+	public AltaCliente(SistemaCocheras s) {
 		super();
 		initGUI();
 		sistema = s;
@@ -108,24 +111,24 @@ public class ModificarCliente extends javax.swing.JFrame {
 				domicilio.setBounds(125, 160, 210, 28);
 			}
 			{
-				modificar = new JButton();
-				getContentPane().add(modificar);
-				modificar.setText("Modificar");
-				modificar.setBounds(238, 263, 73, 28);
-				modificar.addActionListener(new ActionListener()
+				alta = new JButton();
+				getContentPane().add(alta);
+				alta.setText("Crear");
+				alta.setBounds(238, 263, 73, 28);
+				alta.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						boolean resultado = sistema.modificarCliente(dni.getText(), nombre.getText(), mail.getText(), telefono.getText(), domicilio.getText());
+						boolean resultado = sistema.crearCliente(dni.getText(), nombre.getText(), mail.getText(), telefono.getText(), domicilio.getText());
 						dni.setText("");
 						nombre.setText("");
 						mail.setText("");
 						telefono.setText("");
 						domicilio.setText("");
 						if(resultado) {
-							jLabelResultado.setText("cliente modificado");
+							jLabelResultado.setText("cliente creado");
 						} else {
-							jLabelResultado.setText("dni inexistente");
+							jLabelResultado.setText("dni ya existente");
 						}
 						
 					}

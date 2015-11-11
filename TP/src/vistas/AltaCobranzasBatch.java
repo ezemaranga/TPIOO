@@ -1,3 +1,4 @@
+package vistas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+
+import codigo.Cobranza;
+import codigo.SistemaCocheras;
 
 public class AltaCobranzasBatch extends javax.swing.JFrame {
 	private JLabel jLabelCobranzaCredito;

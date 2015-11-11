@@ -1,3 +1,4 @@
+package codigo;
 public class ContratoCbu extends Contrato {
 
 	String entidadBancaria;

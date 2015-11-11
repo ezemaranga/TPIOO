@@ -1,3 +1,4 @@
+package codigo;
 import java.util.Date;
 
 public class ContratoCredito extends Contrato {

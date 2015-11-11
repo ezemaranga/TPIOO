@@ -1,3 +1,4 @@
+package vistas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+
+import codigo.SistemaCocheras;
 
 
 /**
@@ -20,12 +23,10 @@ import javax.swing.WindowConstants;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class ModificarAbonos extends javax.swing.JFrame {
+public class BajaAbonos extends javax.swing.JFrame {
 	private JLabel jLabelCodigo;
-	private JLabel jLabelPrecio;
-	private JButton modificar;
+	private JButton baja;
 	private JTextField codigo;
-	private JTextField precio;
 	private JLabel jLabelResultado;
 
 	
@@ -35,15 +36,15 @@ public class ModificarAbonos extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 	public static void main(String[] args) {
-		ModificarAbonos inst = new ModificarAbonos();
+		BajaAbonos inst = new BajaAbonos();
 		inst.setVisible(true);
 	}
 	
-	public ModificarAbonos ()
+	public BajaAbonos ()
 	{
 		
 	}
-	public ModificarAbonos(SistemaCocheras s) {
+	public BajaAbonos(SistemaCocheras s) {
 		super();
 		initGUI();
 		sistema = s;
@@ -60,49 +61,37 @@ public class ModificarAbonos extends javax.swing.JFrame {
 				jLabelCodigo.setBounds(21, 42, 103, 28);
 			}
 			{
-				jLabelPrecio = new JLabel();
-				getContentPane().add(jLabelPrecio);
-				jLabelPrecio.setText("Precio:");
-				jLabelPrecio.setBounds(21, 91, 103, 28);
-			}
-			{
 				codigo = new JTextField();
 				getContentPane().add(codigo);
 				codigo.setBounds(125, 42, 210, 28);
 			}
 			{
-				precio = new JTextField();
-				getContentPane().add(precio);
-				precio.setBounds(125, 91, 210, 28);
-			}
-			{
 				jLabelResultado= new JLabel();
 				getContentPane().add(jLabelResultado);
 				jLabelResultado.setText("");
-				jLabelResultado.setBounds(21, 131, 200, 28);
+				jLabelResultado.setBounds(21, 92, 200, 28);
 			}
 			{
-				modificar = new JButton();
-				getContentPane().add(modificar);
-				modificar.setText("Modificar");
-				modificar.setBounds(238, 140, 93, 28);
-				modificar.addActionListener(new ActionListener()
+				baja = new JButton();
+				getContentPane().add(baja);
+				baja.setText("Eliminar");
+				baja.setBounds(238, 92, 83, 28);
+				baja.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						boolean resultado = sistema.modificarPrecioAbono(Integer.parseInt(codigo.getText()),Integer.parseInt(precio.getText()));
+						boolean resultado = sistema.eliminarAbono(Integer.parseInt(codigo.getText()));
 						codigo.setText("");
-						precio.setText("");
 						if(resultado) {
-							jLabelResultado.setText("cochera eliminada");
+							jLabelResultado.setText("abono eliminado");
 						} else {
-							jLabelResultado.setText("no existe la cochera");
+							jLabelResultado.setText("abono inexistente");
 						}
 					}
 				});
 			}
 			pack();
-			setSize(400, 225);
+			setSize(400, 175);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

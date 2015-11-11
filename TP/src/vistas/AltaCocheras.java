@@ -1,11 +1,14 @@
+package vistas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import javax.swing.WindowConstants;
+
+import codigo.SistemaCocheras;
 
 public class AltaCocheras extends javax.swing.JFrame {
 	private JLabel jLabelNumero;

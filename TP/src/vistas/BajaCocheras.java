@@ -1,13 +1,14 @@
+package vistas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+
+import codigo.SistemaCocheras;
 
 
 /**
@@ -22,12 +23,10 @@ import javax.swing.WindowConstants;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class ModificarCocheras extends javax.swing.JFrame {
+public class BajaCocheras extends javax.swing.JFrame {
 	private JLabel jLabelNumero;
-	private JLabel jLabelEstado;
-	private JButton modificar;
+	private JButton baja;
 	private JTextField Numero;
-	private JTextField Estado;
 	private JLabel jLabelResultado;
 	
 	
@@ -37,15 +36,15 @@ public class ModificarCocheras extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 	public static void main(String[] args) {
-		ModificarCocheras inst = new ModificarCocheras();
+		AltaCocheras inst = new AltaCocheras();
 		inst.setVisible(true);
 	}
 	
-	public ModificarCocheras ()
+	public BajaCocheras ()
 	{
 		
 	}
-	public ModificarCocheras(SistemaCocheras s) {
+	public BajaCocheras(SistemaCocheras s) {
 		super();
 		initGUI();
 		sistema = s;
@@ -62,20 +61,9 @@ public class ModificarCocheras extends javax.swing.JFrame {
 				jLabelNumero.setBounds(21, 42, 103, 28);
 			}
 			{
-				jLabelEstado= new JLabel();
-				getContentPane().add(jLabelEstado);
-				jLabelEstado.setText("Estado:");
-				jLabelEstado.setBounds(21, 91, 103, 28);
-			}
-			{
 				Numero = new JTextField();
 				getContentPane().add(Numero);
 				Numero.setBounds(125, 42, 210, 28);
-			}
-			{
-				Estado = new JTextField();
-				getContentPane().add(Estado);
-				Estado.setBounds(125, 91, 210, 28);
 			}
 			{
 				jLabelResultado= new JLabel();
@@ -84,22 +72,22 @@ public class ModificarCocheras extends javax.swing.JFrame {
 				jLabelResultado.setBounds(21, 151, 200, 28);
 			}
 			{
-				modificar = new JButton();
-				getContentPane().add(modificar);
-				modificar.setText("Modificar estado");
-				modificar.setBounds(238, 263, 150, 28);
-				modificar.addActionListener(new ActionListener()
+				baja = new JButton();
+				getContentPane().add(baja);
+				baja.setText("Dar de baja");
+				baja.setBounds(238, 263, 115, 28);
+				baja.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						boolean resultado = sistema.cambiarEstadoCochera(Integer.parseInt(Numero.getText()), Boolean.parseBoolean(Estado.getText()));
+						boolean resultado = sistema.eliminarCochera(Integer.parseInt(Numero.getText()));
 						Numero.setText("");
-						Estado.setText("");
 						if(resultado) {
-							jLabelResultado.setText("cochera modificada");
+							jLabelResultado.setText("abono modificado");
 						} else {
-							jLabelResultado.setText("cochera inexistente");
+							jLabelResultado.setText("no existe el abono");
 						}
+						
 					}
 				});
 			}
