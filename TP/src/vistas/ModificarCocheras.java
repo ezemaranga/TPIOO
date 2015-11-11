@@ -30,7 +30,7 @@ public class ModificarCocheras extends javax.swing.JFrame {
 	private JLabel jLabelEstado;
 	private JButton modificar;
 	private JTextField Numero;
-	private JTextField Estado;
+	private JCheckBox Estado;
 	private JLabel jLabelResultado;
 	
 	
@@ -76,7 +76,7 @@ public class ModificarCocheras extends javax.swing.JFrame {
 				Numero.setBounds(125, 42, 210, 28);
 			}
 			{
-				Estado = new JTextField();
+				Estado = new JCheckBox();
 				getContentPane().add(Estado);
 				Estado.setBounds(125, 91, 210, 28);
 			}
@@ -95,7 +95,7 @@ public class ModificarCocheras extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						boolean resultado = sistema.cambiarEstadoCochera(Integer.parseInt(Numero.getText()), Boolean.parseBoolean(Estado.getText()));
+						boolean resultado = sistema.cambiarEstadoCochera(Integer.parseInt(Numero.getText()), !Estado.isSelected());
 						Numero.setText("");
 						Estado.setText("");
 						if(resultado) {
