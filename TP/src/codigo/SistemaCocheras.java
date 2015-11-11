@@ -384,15 +384,17 @@ public class SistemaCocheras {
 	public List<Cobranza> cobrarCreditoBatch(){
 		List<Contrato> aCobrar = new ArrayList<Contrato>();
 		List<Cobranza> cobranzasGeneradas = new ArrayList<Cobranza>();
-		Calendar fecVenc = Calendar.getInstance();
-		fecVenc.add(Calendar.DATE, +10);
+		Calendar fecVenc = aVencer();
+
 		for(Contrato c : contratos){
 			if (c.tipo == "Credito"){
 				int diaCont = c.getFechaContrato().get(Calendar.DAY_OF_MONTH);
 				int diaContQuinc = diaCont + 15;
 				int diaVenc = fecVenc.get(Calendar.DAY_OF_MONTH);
 				boolean agregar = false;
-				if (c.abono.getDescripcion() == "mensual" && diaCont == diaVenc ){
+				Abono a = c.getAbono();
+				String d = a.getDescripcion();
+				if (d == "mensual" && diaCont == diaVenc ){
 					agregar = true;
 				}
 				else if (c.abono.getDescripcion() == "quincenal" && (diaCont == diaVenc || diaContQuinc == diaVenc) ){
@@ -418,6 +420,12 @@ public class SistemaCocheras {
 			cobranzasGeneradas.add(cobranza);
 		}
 		return cobranzasGeneradas;
+	}
+	
+	private Calendar aVencer() {
+		Calendar fecVenc = Calendar.getInstance();
+		fecVenc.add(Calendar.DATE, +10);
+		return fecVenc;
 	}
 	
 	public List<Cobranza> cobrarCbuBatch(){
