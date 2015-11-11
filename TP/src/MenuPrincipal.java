@@ -31,9 +31,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JMenuItem jMenuItemAltaContratos;
 	private JMenuItem jMenuItemBajaContratos;
 	private JMenuItem jMenuItemModificacionContratos;
-	private JMenu jMenuMedioDePago;
-	private JMenuItem jMenuItemAltaMdPago;
-	private JMenuItem jMenuItemBajaMdPago;
 	private JMenu jMenuCobranzas;
 	private JMenuItem jMenuItemNuevaCobranza;
 	private JMenuItem jMenuItemProcesosBatch;
@@ -269,55 +266,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 					}
 				}
 				{
-					{
-						jMenuMedioDePago = new JMenu();
-						jMenuBarSistema.add(jMenuMedioDePago);
-						jMenuMedioDePago.setText("M. de Pago");
-						jMenuMedioDePago.setPreferredSize(new java.awt.Dimension(80,22));
-						jMenuMedioDePago.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
 
-							}
-						});
-						{
-							jMenuItemAltaMdPago = new JMenuItem();
-							jMenuMedioDePago.add(jMenuItemAltaMdPago);
-							jMenuItemAltaMdPago.setText("Alta");
-							jMenuItemAltaMdPago.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-									/*
-									 * AltaMedioDePago a = new
-									 * jMenuItemAltaMdPago(sistema);
-									 * a.setVisible(true);
-									 */
-								}
-							});
-						}
-						{
-							jMenuItemBajaMdPago = new JMenuItem();
-							jMenuMedioDePago.add(jMenuItemBajaMdPago);
-							jMenuItemBajaMdPago.setText("Modificacion");
-							jMenuItemBajaMdPago.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent evt) {
-									/*
-									 * BajaMedioDePago m = new
-									 * BajaMedioDePago(sistema);
-									 * m.setVisible(true);
-									 */
-								}
-							});
-						}
-					}
 					{
 						jMenuCobranzas = new JMenu();
 						jMenuBarSistema.add(jMenuCobranzas);
 						jMenuCobranzas.setText("Cobranzas");
 						jMenuCobranzas.setPreferredSize(new java.awt.Dimension(80,22));
-						jMenuMedioDePago.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-
-							}
-						});
 						{
 							jMenuItemNuevaCobranza = new JMenuItem();
 							jMenuCobranzas.add(jMenuItemNuevaCobranza);
