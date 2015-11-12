@@ -225,12 +225,14 @@ public class SistemaCocheras {
 	}
 	
 	//ABM de Contratos
-	public boolean crearContratoCheque(String dniCliente, Abono abono, String patenteAuto) {
+	public boolean crearContratoCheque(String dniCliente, int codigoAbono, String patenteAuto) {
 		//busco el cliente
 		Cliente cliente = buscarCliente(dniCliente);
 		if (cliente == null){
 			return false;
 		}
+		
+		Abono abono = buscarAbono(codigoAbono);
 		
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
@@ -251,12 +253,15 @@ public class SistemaCocheras {
 		return (contrato != null);	
 	}
 	
-	public boolean crearContratoEfectivo(String dniCliente, Abono abono, String patenteAuto) {
+	public boolean crearContratoEfectivo(String dniCliente, int codigoAbono, String patenteAuto) {
 		//busco el cliente
 		Cliente cliente = buscarCliente(dniCliente);
 		if (cliente == null){
 			return false;
 		}
+		
+		Abono abono = buscarAbono(codigoAbono);
+		
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
@@ -276,17 +281,19 @@ public class SistemaCocheras {
 		return (contrato != null);
 	}
 	
-	public boolean crearContratoCBU(String dniCliente, Abono abono, String patenteAuto, String entidad, String nroCBU) {
+	public boolean crearContratoCBU(String dniCliente, int codigoAbono, String patenteAuto, String entidad, String nroCBU) {
 		//busco el cliente
 		Cliente cliente = buscarCliente(dniCliente);
 		if (cliente == null){
 			return false;
 		}
 		
+		Abono abono = buscarAbono(codigoAbono);
+		
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
-			if (auto.getPatente() == patenteAuto) {
+			if (auto.getPatente().equals(patenteAuto)) {
 				autoAGuardar = auto;
 			}
 		}
@@ -302,12 +309,15 @@ public class SistemaCocheras {
 		return (contrato != null);	
 	}
 	
-	public boolean crearContratoCredito(String dniCliente, Abono abono, String patenteAuto, String entidad, String nroTarjeta, Date fechaVenc) {
+	public boolean crearContratoCredito(String dniCliente, int codigoAbono, String patenteAuto, String entidad, String nroTarjeta, Date fechaVenc) {
 		//busco el cliente
 		Cliente cliente = buscarCliente(dniCliente);
 		if (cliente == null){
 			return false;
 		}
+		
+		Abono abono = buscarAbono(codigoAbono);
+
 		
 		//busco el auto del cliente
 		Auto autoAGuardar = null;

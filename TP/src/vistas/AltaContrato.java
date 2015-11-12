@@ -2,8 +2,11 @@ package vistas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Vector;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -11,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import codigo.Abono;
 import codigo.SistemaCocheras;
 
 
@@ -46,9 +50,9 @@ public class AltaContrato extends javax.swing.JFrame {
 	private JButton alta;
 	
 	private JTextField JTCliente;
-	private JTextField JTAbono;
 	private JTextField JTAuto;
 	private JComboBox JTTipo;
+	private JComboBox JTAbono;
 	private JTextField JTEntidad;
 	private JTextField JTCbu;
 	private JTextField JTNroTarjeta;
@@ -73,8 +77,8 @@ public class AltaContrato extends javax.swing.JFrame {
 
 	public AltaContrato(SistemaCocheras s) {
 		super();
-		initGUI();
 		sistema = s;
+		initGUI();
 	}
 	
 	private void initGUI() {
@@ -146,7 +150,11 @@ public class AltaContrato extends javax.swing.JFrame {
 							JTCliente.setBounds(119, 40, 210, 28);
 						}
 						{
-							JTAbono = new JTextField();
+							Vector abonosList = new Vector();
+							for(Abono abono : sistema.getAbonos()) {
+								abonosList.add(abono.getDescripcion() + ' ' + abono.getTamanioCochera());
+							}
+							JTAbono = new JComboBox(abonosList);
 							getContentPane().add(JTAbono);
 							
 							JTAbono.setBounds(119, 80, 210, 28);
@@ -246,6 +254,7 @@ public class AltaContrato extends javax.swing.JFrame {
 					public void actionPerformed(ActionEvent evt) 
 					{
 
+						boolean resultado = false;
 						switch (JTTipo.getSelectedIndex()){
 						case 0:
 						{
@@ -253,34 +262,40 @@ public class AltaContrato extends javax.swing.JFrame {
 						}
 						case 1:
 						{
-							sistema.crearContratoCBU(JTCliente.getText(), null, JTAuto.getText(), JTEntidad.getText(), JTCbu.getText());
+							resultado = sistema.crearContratoCBU(JTCliente.getText(), JTAbono.getSelectedIndex(), JTAuto.getText(), JTEntidad.getText(), JTCbu.getText());
 							break;
 						}
 						case 2:
 						{
-							sistema.crearContratoCheque(JTCliente.getText(), null, JTAuto.getText());
+							resultado = sistema.crearContratoCheque(JTCliente.getText(), JTAbono.getSelectedIndex(), JTAuto.getText());
 							break;
 						}
 						case 3:
 						{
-							sistema.crearContratoCredito(JTCliente.getText(), null, JTAuto.getText(), JTEntidad.getText(), JTNroTarjeta.getText(), null);
+							resultado = sistema.crearContratoCredito(JTCliente.getText(), JTAbono.getSelectedIndex(), JTAuto.getText(), JTEntidad.getText(), JTNroTarjeta.getText(), null);
 							break;
 						}
 						case 4:
 						{
-							sistema.crearContratoEfectivo(JTCliente.getText(), null, JTAuto.getText());
+							resultado = sistema.crearContratoEfectivo(JTCliente.getText(), JTAbono.getSelectedIndex(), JTAuto.getText());
 							break;
 						}
 						}
 									
 						JTCliente.setText(""); 
-						JTAbono.setText(""); 
 						JTAuto.setText("");  
 						JTTipo.setSelectedIndex(0);
 						JTEntidad.setText("");
 						JTCbu.setText("");
 						JTNroTarjeta.setText("");
-						JTFecVenc.setText("");					
+						JTFecVenc.setText("");		
+						
+
+						if(resultado){
+							JOptionPane.showMessageDialog(null, "Contrato Creado", "Creado", JOptionPane.INFORMATION_MESSAGE);
+						}else{
+							JOptionPane.showMessageDialog(null, "Contrato no creado", "Error", JOptionPane.INFORMATION_MESSAGE);
+						}
 					}
 				});
 			}

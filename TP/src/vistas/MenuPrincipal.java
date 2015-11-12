@@ -276,11 +276,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 									.addActionListener(new ActionListener() {
 										public void actionPerformed(
 												ActionEvent evt) {
-											/*
-											 * BajaContrato m = new
-											 * BajaContrato(sistema);
-											 * m.setVisible(true);
-											 */
+											
+											 BajaContrato m = new BajaContrato(sistema);
+											 m.setVisible(true);
+										
 										}
 									});
 						}
@@ -368,11 +367,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	}
 
 	private static void testeoCrearContrato(SistemaCocheras sistema) {
-		sistema.crearContratoEfectivo("1", sistema.getAbonos().get(2), "ABC123");
-		sistema.crearContratoCheque("1", sistema.getAbonos().get(2), "ABC123");
-		sistema.crearContratoCredito("1", sistema.getAbonos().get(2), "ABC123",
+		sistema.crearContratoEfectivo("1", 2, "ABC123");
+		sistema.crearContratoCheque("1", 2, "ABC123");
+		sistema.crearContratoCredito("1", 2, "ABC123",
 				"Banco1", "123456", new Date());
-		sistema.crearContratoCBU("1", sistema.getAbonos().get(2), "ABC123",
+		sistema.crearContratoCBU("1", 2, "ABC123",
 				"Banco1", "123456");
 		System.out.println("----------CONTRATOS GENERADOS--------------");
 		sistema.imprimitContratos();
@@ -439,12 +438,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	}
 
 	private static void altaMockAbonos(SistemaCocheras sistema) {
-		sistema.crearAbono("mensual", 800, "chica", 1);
-		sistema.crearAbono("mensual", 1000, "mediana", 2);
-		sistema.crearAbono("mensual", 1200, "grande", 3);
-		sistema.crearAbono("quincenal", 500, "chica", 4);
-		sistema.crearAbono("quincenal", 600, "mediana", 5);
-		sistema.crearAbono("quincenal", 700, "grande", 6);
+		sistema.crearAbono("mensual", 800, "chica", 0);
+		sistema.crearAbono("mensual", 1000, "mediana", 1);
+		sistema.crearAbono("mensual", 1200, "grande", 2);
+		sistema.crearAbono("quincenal", 500, "chica", 3);
+		sistema.crearAbono("quincenal", 600, "mediana", 4);
+		sistema.crearAbono("quincenal", 700, "grande", 5);
 
 		System.out.println("------ABONOS CREADOS--------");
 		sistema.imprimirAbonos();

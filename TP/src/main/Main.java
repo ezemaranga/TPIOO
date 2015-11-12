@@ -39,16 +39,16 @@ public class Main {
 	}
 
 	private static void testeoCrearContrato(SistemaCocheras sistema) {
-		sistema.crearContratoEfectivo("1", sistema.getAbonos().get(2), "ABC123");
-		sistema.crearContratoCheque("1", sistema.getAbonos().get(2), "ABC123");
-		sistema.crearContratoCredito("1", sistema.getAbonos().get(2), "ABC123", "Banco1", "123456", new Date());
-		sistema.crearContratoCBU("1", sistema.getAbonos().get(2), "ABC123", "Banco1", "123456");
+		sistema.crearContratoEfectivo("1", 2, "ABC123");
+		sistema.crearContratoCheque("1", 2, "ABC123");
+		sistema.crearContratoCredito("1", 2, "ABC123", "Banco1", "123456", new Date());
+		sistema.crearContratoCBU("1", 2, "ABC123", "Banco1", "123456");
 		System.out.println("----------CONTRATOS GENERADOS--------------");
 		sistema.imprimitContratos();
 	}
 	
 	private static void testeoCobranzas(SistemaCocheras sistema){
-		//Setear la fecha con 10 días más y x meses menos que la fecha de hoy
+		//Setear la fecha con 10 dï¿½as mï¿½s y x meses menos que la fecha de hoy
 		sistema.getContratos().get(2).setFechaContrato(new GregorianCalendar(2015,7,21));
 		sistema.getContratos().get(3).setFechaContrato(new GregorianCalendar(2015,9,21));
 		
