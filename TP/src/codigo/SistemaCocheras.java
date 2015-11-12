@@ -241,6 +241,10 @@ public class SistemaCocheras {
 				autoAGuardar = auto;
 			}
 		}
+		
+		if(autoAGuardar == null) {
+			return false;
+		}
 		//busco una cochera
 		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
 		//si se cumplen las condiciones creo el contrato
@@ -268,6 +272,11 @@ public class SistemaCocheras {
 			if (auto.getPatente() == patenteAuto) {
 				autoAGuardar = auto;
 			}
+		}
+		
+		
+		if(autoAGuardar == null) {
+			return false;
 		}
 		//busco una cochera
 		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
@@ -297,6 +306,10 @@ public class SistemaCocheras {
 				autoAGuardar = auto;
 			}
 		}
+		
+		if(autoAGuardar == null) {
+			return false;
+		}
 		//busco una cochera
 		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
 		//si se cumplen las condiciones creo el contrato
@@ -325,6 +338,11 @@ public class SistemaCocheras {
 			if (auto.getPatente() == patenteAuto) {
 				autoAGuardar = auto;
 			}
+		}
+		
+		
+		if(autoAGuardar == null) {
+			return false;
 		}
 		//busco una cochera
 		Cochera cochera = buscarCocheraDisponible(autoAGuardar.getTamanio());
