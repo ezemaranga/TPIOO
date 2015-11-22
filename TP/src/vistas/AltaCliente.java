@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -33,7 +34,7 @@ public class AltaCliente extends javax.swing.JFrame {
 	private JTextField patente;
 	private JTextField marca;
 	private JTextField modelo;
-	private JTextField tamanio;
+	private JComboBox tamanio;
 
 	
 	private SistemaCocheras sistema;
@@ -167,7 +168,8 @@ public class AltaCliente extends javax.swing.JFrame {
 				modelo.setBounds(125, 320, 210, 28);
 			}
 			{
-				tamanio = new JTextField();
+				String[] tamanios = {"Grande","Mediana","Chica"};
+				tamanio = new JComboBox(tamanios);
 				getContentPane().add(tamanio);
 				tamanio.setBounds(125, 350, 210, 28);
 			}
@@ -184,7 +186,7 @@ public class AltaCliente extends javax.swing.JFrame {
 
 						
 						Cliente cliente = sistema.buscarCliente(dni.getText());
-						Auto auto = new Auto(patente.getText(), marca.getText(), modelo.getText(), tamanio.getText());
+						Auto auto = new Auto(patente.getText(), marca.getText(), modelo.getText(), (String) tamanio.getSelectedItem());
 						cliente.agregarAuto(auto);
 						
 						if(resultado) {

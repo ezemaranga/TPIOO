@@ -159,7 +159,7 @@ public class SistemaCocheras {
 	
 	public Cochera buscarCocheraDisponible(String tamanio) {
 		for(Cochera cochera : cocheras) {
-			if(cochera.getTamanio() == tamanio && cochera.isDisponible()) {
+			if(cochera.getTamanio().equals(tamanio) && cochera.isDisponible()) {
 				return cochera;
 			}
 		}
@@ -237,7 +237,7 @@ public class SistemaCocheras {
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
-			if (auto.getPatente() == patenteAuto) {
+			if (auto.getPatente().equals(patenteAuto)) {
 				autoAGuardar = auto;
 			}
 		}
@@ -269,7 +269,7 @@ public class SistemaCocheras {
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
-			if (auto.getPatente() == patenteAuto) {
+			if (auto.getPatente().equals(patenteAuto)) {
 				autoAGuardar = auto;
 			}
 		}
@@ -335,7 +335,7 @@ public class SistemaCocheras {
 		//busco el auto del cliente
 		Auto autoAGuardar = null;
 		for (Auto auto : cliente.getAutos()) {
-			if (auto.getPatente() == patenteAuto) {
+			if (auto.getPatente().equals(patenteAuto)) {
 				autoAGuardar = auto;
 			}
 		}
@@ -359,7 +359,7 @@ public class SistemaCocheras {
 	public List<Contrato> buscarContratosCliente(String dni) {
 		List<Contrato> contratosCliente = new ArrayList<Contrato>();
 		for(Contrato contrato : contratos) {
-			if (contrato.getCliente().getDni() == dni) {
+			if (contrato.getCliente().getDni().equals(dni)) {
 				contratosCliente.add(contrato);
 			}
 		}
@@ -415,17 +415,17 @@ public class SistemaCocheras {
 		Calendar fecVenc = aVencer();
 
 		for(Contrato c : contratos){
-			if (c.tipo == "Credito"){
+			if (c.tipo.equals("Credito")){
 				int diaCont = c.getFechaContrato().get(Calendar.DAY_OF_MONTH);
 				int diaContQuinc = diaCont + 15;
 				int diaVenc = fecVenc.get(Calendar.DAY_OF_MONTH);
 				boolean agregar = false;
 				Abono a = c.getAbono();
 				String d = a.getDescripcion();
-				if (d == "mensual" && diaCont == diaVenc ){
+				if (d.equals("mensual") && diaCont == diaVenc ){
 					agregar = true;
 				}
-				else if (c.abono.getDescripcion() == "quincenal" && (diaCont == diaVenc || diaContQuinc == diaVenc) ){
+				else if (c.abono.getDescripcion().equals("quincenal") && (diaCont == diaVenc || diaContQuinc == diaVenc) ){
 					agregar = true;
 				}
 				if (agregar){
@@ -462,15 +462,15 @@ public class SistemaCocheras {
 		Calendar fecVenc = Calendar.getInstance();
 		fecVenc.add(Calendar.DATE, +10);
 		for(Contrato c : contratos){
-			if (c.tipo == "CBU"){
+			if (c.tipo.equals("CBU")){
 				int diaCont = c.getFechaContrato().get(Calendar.DAY_OF_MONTH);
 				int diaContQuinc = diaCont + 15;
 				int diaVenc = fecVenc.get(Calendar.DAY_OF_MONTH);
 				boolean agregar = false;
-				if (c.abono.getDescripcion() == "mensual" && diaCont == diaVenc ){
+				if (c.abono.getDescripcion().equals("mensual") && diaCont == diaVenc ){
 					agregar = true;
 				}
-				else if (c.abono.getDescripcion() == "quincenal" && (diaCont == diaVenc || diaContQuinc == diaVenc) ){
+				else if (c.abono.getDescripcion().equals("quincenal") && (diaCont == diaVenc || diaContQuinc == diaVenc) ){
 					agregar = true;
 				}
 				if (agregar){
